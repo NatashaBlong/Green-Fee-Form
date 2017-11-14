@@ -8,13 +8,14 @@
   <link rel="stylesheet" href="style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 </head>
 <body>
 
 <!--  Top header   -->
 <div class="jumbotron">
   <div class="container text-center">
-    <h1>Student Green Fee Review</h1>      
+    <h1>Student Green Fee Review</h1>
     <p>put something here</p>
   </div>
 </div>
@@ -61,41 +62,42 @@
 <!--  end create arrays   -->
 
 <!--  progress bars  -->
-<?php 
+<?php
 $i = 0;
-foreach ($proposalArray as $proposal) { 
-  
+foreach ($proposalArray as $proposal) {
+
   $y = $proposalArrayAvg[$i];
-  
+
   $barFilled = $y * 20;
 
   ?>
 <div class="progress">
   <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar"
   aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:<?php print $barFilled?>%">
-  <?php print $proposal . " Avg Score = " . $y ?> 
+  <?php print $proposal . " Avg Score = " . $y ?>
   </div>
 </div>
-  <?php 
+  <?php
     $i++;
         } ?>
       <p>Use this box to talk about what the graph above means
       </p>
       <br><br>
-      
+
 
       <!--  start accordian box   -->
       <h4><small>RECENT POSTS</small></h4>
       <hr>
       <h2>Ranked Proposals</h2>
   <div class="panel-group" id="accordion">
-    
-    <?php 
+
+    <?php
      $pos = 1;
      $posAvg = 0;
-      foreach ($proposalArray as $proposal) { 
+      foreach ($proposalArray as $proposal) {
 
         $k = $proposalArrayAvg[$posAvg];
+        
       ?>
     <div class="panel panel-default">
       <div class="panel-heading">
@@ -105,9 +107,21 @@ foreach ($proposalArray as $proposal) {
       </div>
       <div id="collapse<?php print $pos?>" class="panel-collapse collapse">
         <div class="panel-body">
-        <?php foreach ($Question as $q){
+
+          <!--  start radar chart  -->
+          <div id="chartjs-radar">
+          <canvas id="canvas"></canvas>
+          </div>
+          <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js'></script>
+          <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js'></script>
+          <script  src="jScript.js"></script>
+
+        <?php
+        foreach ($Question as $q)
+        {
           print ("Question = " . $q . "<br>");
-         } ?>
+         }
+         ?>
          <h2>View comments</h2>
   <!-- Trigger the modal with a button -->
   <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Comments</button>
@@ -138,49 +152,6 @@ foreach ($proposalArray as $proposal) {
       $posAvg = $posAvg + 1;
      } ?>
 
-  </div> 
-
-      <hr>
-
-      <h4>Leave a Comment:</h4>
-      <form role="form">
-        <div class="form-group">
-          <textarea class="form-control" rows="3" required></textarea>
-        </div>
-        <button type="submit" class="btn btn-success">Submit</button>
-      </form>
-      <br><br>
-      
-      <p><span class="badge">2</span> Comments:</p><br>
-      
-      <div class="row">
-        <div class="col-sm-2 text-center">
-          <img src="bandmember.jpg" class="img-circle" height="65" width="65" alt="Avatar">
-        </div>
-        <div class="col-sm-10">
-          <h4>Anja <small>Sep 29, 2015, 9:12 PM</small></h4>
-          <p>Keep up the GREAT work! I am cheering for you!! Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          <br>
-        </div>
-        <div class="col-sm-2 text-center">
-          <img src="bird.jpg" class="img-circle" height="65" width="65" alt="Avatar">
-        </div>
-        <div class="col-sm-10">
-          <h4>John Row <small>Sep 25, 2015, 8:25 PM</small></h4>
-          <p>I am so happy for you man! Finally. I am looking forward to read about your trendy life. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          <br>
-          <p><span class="badge">1</span> Comment:</p><br>
-          <div class="row">
-            <div class="col-sm-2 text-center">
-              <img src="bird.jpg" class="img-circle" height="65" width="65" alt="Avatar">
-            </div>
-            <div class="col-xs-10">
-              <h4>Nested Bro <small>Sep 25, 2015, 8:28 PM</small></h4>
-              <p>Me too! WOW!</p>
-              <br>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -190,8 +161,8 @@ foreach ($proposalArray as $proposal) {
   <p>Footer Text</p>
 </footer>
 
-	
+
 	</body>
-	
+
 
 </html>
