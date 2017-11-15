@@ -90,14 +90,12 @@
             <div id="collapse<?php print $pos?>" class="panel-collapse collapse">
               <div class="panel-body">
 
-                <!--  start radar chart
-                <div id="chartjs-radar">
-                <canvas id="canvas"></canvas>
-              </div>
-              <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js'></script>
-              <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js'></script>
-              <script  src="jScript.js"></script>
-            -->
+
+                <canvas id="radar-chart" width="800" height="600"></canvas>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+                <script  src="jScript.js"></script>
+
+
             <?php
             foreach ($Question as $q)
             {
@@ -176,21 +174,14 @@
           $pos = $pos + 1;
           $posAvg = $posAvg + 1;
         } ?>
-
       </div>
     </div>
     <div class="col-sm-2 sidenav" class="fix">
     </div>
   </div>
 </div>
-
-
 <footer class="container-fluid">
   <p>Footer Text</p>
 </footer>
-
-
 </body>
-
-
 </html>

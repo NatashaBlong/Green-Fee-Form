@@ -124,11 +124,13 @@
 
       <!--  questions to enter quiz   -->
       <div class="col-sm-8">
+        <?php
+        if (!isset($_POST["name"])) { ?>
         <body onload="document.getElementById('id01').style.display='block'">
-
+        <?php } ?>
           <div id="id01" class="modal">
 
-            <form class="modal-content animate" action="/action_page.php">
+            <form class="modal-content animate" action="tryy.php" method="POST">
 
               <div class="container">
                 <label><b><h3>Please Log in and select a proposal to review:</h3></b></label>
@@ -153,13 +155,12 @@
                   }
                   ?>
                 </select><br>
-                <button type="submit">Login</button><br>
+                <button type="submit">Proceed to Proposal Review</button><br>
               </div>
               <div class="container" style="background-color:#f1f1f1">
               </div>
             </form>
           </div>
-
           <!--  end create arrays   -->
 
           <!--  start accordian box   -->
@@ -167,34 +168,44 @@
           if (isset($_POST["output"]) && isset($_POST["name"]) && isset($_POST["psw"])) { ?>
             <div class="panel-group" id="accordion">
               <?php
-              $pos = 1;
+
+              $pos = 1; //counter
               $posAvg = 0;
-              foreach ($proposalArray as $proposal) {
-                $k = $proposalArrayAvg[$posAvg];
+
+              $ques = $db->query("SELECT * FROM questions");
+              $i = 0;
+              $j = 100;
+              foreach($ques as $que) {
                 ?>
                 <div class="panel panel-default">
                   <div class="panel-heading">
                     <h4 class="panel-title">
-                      <a data-toggle="collapse" data-parent="#accordion" href="#collapse<?php print $pos?>"> <?php print $proposal . " Average Score = " . $k?></a>
+                      <a data-toggle="collapse" data-parent="#accordion" href="#collapse<?php print $pos?>"> <?php print $que["question"]?></a>
                     </h4>
                   </div>
-                  <div id="collapse<?php print $pos?>" class="panel-collapse collapse">
+                  <div id="collapse<?php print $pos?>" class="panel-collapse collapse in">
                     <div class="panel-body">
-                      <?php
-                      foreach ($Question as $q)
-                      {
-                        print ("Question = " . $q . "<br>");
-                      }
-                      ?>
-                      <h2>View comments</h2>
+
+                      <?= $que["description"] ?>
+
+                      <div class="col-6" class="<?= $k ?>">
+                        <input type="range" min="1" max="5" value="3" class="slider" name="<?=  $i ?>">
+                        <br>
+                        <img src="num.png" alt="numbers" id="nums">
+                        <br>
+                        <p>Comments:</p>
+                        <textarea name="<?= $j ?>" rows="5" cols="50"></textarea>
+                        <?php print '<button type="button" id="button'.$pos.'"class="btn btn-success">Next Question</button>';
+                        // on click call on method in js
+                        ?>
+                      </div>
                     </div>
                   </div>
                 </div>
                 <?php
                 $pos = $pos + 1;
                 $posAvg = $posAvg + 1;
-              }
-              ?>
+              } ?>
             </div>
           <?php  } ?>
           <!--  end accordian box   -->
