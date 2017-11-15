@@ -45,7 +45,7 @@
         foreach ($rows as $row) {
         ?>
         <p>
-    <ul>  
+    <ul>
     	<li>
             <strong>Title:</strong> <?= $row["Title"] ?>
         </li>
@@ -62,34 +62,34 @@
         <br>
 		<form action="confirmation.php" method="POST">
         <?php } ?>
-        
-        
-        
+
+
+
 		<?php
 			$ques = $db->query("SELECT * FROM questions");
 			$i = 0;
 			$j = 100;
-			
+
 			foreach($ques as $que) {
 		?>
 		<div class="col-6">
 			<?= $que["question"] ?>
 		<br>
-			&nbsp&nbsp&nbsp&nbsp&nbsp
+			<br>
 			<?= $que["description"] ?>
 		</div>
-		
+
 			<div class="col-6" class="<?= $k ?>">
   				<input type="range" min="1" max="5" value="3" class="slider" name="<?=  $i ?>">
 			<br>
-			
+
 			<img src="num.png" alt="numbers" id="nums">
 		<br>
 		<p>Comments:</p>
 		<textarea name="<?= $j ?>" rows="5" cols="50"></textarea>
-		
+
 		</div>
-		
+
 		<br>
 		<br>
 		<hr>
@@ -98,9 +98,6 @@
 		<input type="submit" value="Submit" id="finalS">
 		</form>
     </p>
-
     <?php } ?>
-    
-
 </body>
 </html>

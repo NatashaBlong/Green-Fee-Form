@@ -20,32 +20,19 @@
   </div>
 </div>
 
-
 <!--  side bar   -->
 <div class="container-fluid">
   <div class="row content">
-    <div class="col-sm-3 sidenav">
-      <h4>Review Page</h4>
-      <ul class="nav nav-pills nav-stacked">
-        <li class="active"><a href="#section1">Home</a></li>
-        <li><a href="#section2">Friends</a></li>
         <li><a href="#section3">Family</a></li>
-        <li><a href="#section3">Photos</a></li>
-      </ul><br>
       <div class="input-group">
         <input type="text" class="form-control" placeholder="Search Blog..">
         <span class="input-group-btn">
           <button class="btn btn-default" type="button">
-            <span class="glyphicon glyphicon-search"></span>
-          </button>
-        </span>
-      </div>
+    <div class="col-sm-2 sidenav" class="sidebars">
     </div>
 
-
-
 <!--  first stats box   -->
-    <div class="col-sm-9">
+    <div class="col-sm-8">
       <h4><small>Data</small></h4>
       <hr>
       <h2>Proposal Average Scores</h2>
@@ -108,7 +95,7 @@ foreach ($proposalArray as $proposal) {
       <div id="collapse<?php print $pos?>" class="panel-collapse collapse">
         <div class="panel-body">
 
-          <!--  start radar chart  
+          <!--  start radar chart
           <div id="chartjs-radar">
           <canvas id="canvas"></canvas>
           </div>
@@ -124,11 +111,11 @@ foreach ($proposalArray as $proposal) {
          ?>
          <h2>View comments</h2>
   <!-- Trigger the modal with a button -->
- 
+
   <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal<?=$pos?>"  >Comments</button>
 
   <!-- Modal -->
-  
+
   <div class="modal fade" id="myModal<?=$pos?>" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
@@ -150,29 +137,29 @@ foreach ($proposalArray as $proposal) {
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">Section 4 <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="#section41">Section 4-1</a></li>
-            <li><a href="#section42">Section 4-2</a></li>                     
+            <li><a href="#section42">Section 4-2</a></li>
           </ul>
         </li>
       </ul>
     </nav>
     <div class="col-sm-9">
-      <div id="section1">    
+      <div id="section1">
         <h1>Section 1</h1>
         <p>Try to scroll this section and look at the navigation list while scrolling!</p>
       </div>
-      <div id="section2"> 
+      <div id="section2">
         <h1>Section 2</h1>
         <p>Try to scroll this section and look at the navigation list while scrolling!
-      </div>        
-      <div id="section3">         
+      </div>
+      <div id="section3">
         <h1>Section 3</h1>
         <p>Try to scroll this section and look at the navigation list while scrolling!</p>
       </div>
-      <div id="section41">         
+      <div id="section41">
         <h1>Section 4-1</h1>
         <p>Try to scroll this section and look at the navigation list while scrolling!</p>
-      </div>      
-      <div id="section42">         
+      </div>
+      <div id="section42">
         <h1>Section 4-2</h1>
         <p>Try to scroll this section and look at the navigation list while scrolling!</p>
       </div>
@@ -186,7 +173,7 @@ foreach ($proposalArray as $proposal) {
       </div>
     </div>
   </div>
-     
+
         </div>
       </div>
     </div>
@@ -197,8 +184,11 @@ foreach ($proposalArray as $proposal) {
 
       </div>
     </div>
+    <div class="col-sm-2 sidenav" class="fix">
+    </div>
   </div>
 </div>
+
 
 <footer class="container-fluid">
   <p>Footer Text</p>
