@@ -9,237 +9,202 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <style>
+  /* Full-width input fields */
+  input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+
+  /* Set a style for all buttons */
+  button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+  }
+
+  button:hover {
+    opacity: 0.8;
+  }
+
+  /* Extra styles for the cancel button */
+  .cancelbtn {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #f44336;
+  }
+
+  img.avatar {
+    width: 40%;
+    border-radius: 50%;
+  }
+
+  .container {
+    padding: 16px;
+    width: 80%;
+  }
+
+  span.psw {
+    float: right;
+    padding-top: 16px;
+  }
+
+  /* The Modal (background) */
+  .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 60px;
+  }
+
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #888;
+    width: 25%; /* Could be more or less, depending on screen size */
+  }
+  /* Add Zoom Animation */
+  .animate {
+    -webkit-animation: animatezoom 0.6s;
+    animation: animatezoom 0.6s
+  }
+
+  @-webkit-keyframes animatezoom {
+    from {-webkit-transform: scale(0)}
+    to {-webkit-transform: scale(1)}
+  }
+
+  @keyframes animatezoom {
+    from {transform: scale(0)}
+    to {transform: scale(1)}
+  }
+  /* Change styles for span and cancel button on extra small screens */
+  @media screen and (max-width: 300px) {
+    span.psw {
+      display: block;
+      float: none;
+    }
+    .cancelbtn {
+      width: 100%;
+    }
+  }
+  </style>
 </head>
 <body>
 
-<!--  Top header   -->
-<div class="jumbotron">
-  <div class="container text-center">
-    <h1>Student Green Fee Review</h1>
-    <p>put something here</p>
-  </div>
-</div>
-
-<!--  side bar   -->
-<div class="container-fluid">
-  <div class="row content">
-    <div class="col-sm-2 sidenav" class="sidebars">
+  <!--  Top header   -->
+  <div class="jumbotron">
+    <div class="container text-center">
+      <h1>Student Green Fee Review</h1>
+      <p>put something here</p>
     </div>
+  </div>
 
-<!--  first stats box   -->
-    <div class="col-sm-8">
-      <form action="review.php" method="POST">
-        <div class="form-group">
-          <select name="output" class="form-control" id="sell">
+  <!--  side bar   -->
+  <div class="container-fluid">
+    <div class="row content">
+      <div class="col-sm-2 sidenav" class="sidebars">
+      </div>
+
+      <!--  questions to enter quiz   -->
+      <div class="col-sm-8">
+        <body onload="document.getElementById('id01').style.display='block'">
+
+          <div id="id01" class="modal">
+
+            <form class="modal-content animate" action="/action_page.php">
+
+              <div class="container">
+                <label><b><h3>Please Log in and select a proposal to review:</h3></b></label>
+
+                <label><b>Name</b></label>
+                <input type="text" placeholder="Enter Name" name="name" required ><br>
+
+                <label><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="psw" required><br><br>
+
+                <label><b>Select a Proposal</b></label>
+                <select name="output" class="form-control" id="sell">
+                  <?php
+                  $db = new PDO("mysql:dbname=344Database", "root", "");
+                  $lines = $db->query("SELECT Title FROM test");
+                  $i = 1;
+                  foreach ($lines as $line) {
+                    ?>
+                    <option value="<?= $line["Title"] ?>"> <?= $line["Title"] ?> </option>
+                    <?php
+                    $i = $i + 1;
+                  }
+                  ?>
+                </select><br>
+                <button type="submit">Login</button><br>
+              </div>
+              <div class="container" style="background-color:#f1f1f1">
+              </div>
+            </form>
+          </div>
+
+          <!--  end create arrays   -->
+
+          <!--  start accordian box   -->
+          <?php
+          if (isset($_POST["output"]) && isset($_POST["name"]) && isset($_POST["psw"])) { ?>
+            <div class="panel-group" id="accordion">
               <?php
-              $db = new PDO("mysql:dbname=344Database", "root", "");
-              $lines = $db->query("SELECT Title FROM test");
-              $i = 1;
-              foreach ($lines as $line) {
-              ?>
-              <option value="<?= $line["Title"] ?>"> <?= $line["Title"] ?> </option>
-              <?php
-              $i = $i + 1;
+              $pos = 1;
+              $posAvg = 0;
+              foreach ($proposalArray as $proposal) {
+                $k = $proposalArrayAvg[$posAvg];
+                ?>
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      <a data-toggle="collapse" data-parent="#accordion" href="#collapse<?php print $pos?>"> <?php print $proposal . " Average Score = " . $k?></a>
+                    </h4>
+                  </div>
+                  <div id="collapse<?php print $pos?>" class="panel-collapse collapse">
+                    <div class="panel-body">
+                      <?php
+                      foreach ($Question as $q)
+                      {
+                        print ("Question = " . $q . "<br>");
+                      }
+                      ?>
+                      <h2>View comments</h2>
+                    </div>
+                  </div>
+                </div>
+                <?php
+                $pos = $pos + 1;
+                $posAvg = $posAvg + 1;
               }
               ?>
-
-          </select>
+            </div>
+          <?php  } ?>
+          <!--  end accordian box   -->
         </div>
-          <input type="Submit">
-      </form>
-
-
-
-          <?php
-      	if (isset($_POST["output"])) {
-      	$search = $_POST["output"];
-          $rows = $db->query("SELECT * FROM test where Title = '".$search."' ");
-          foreach ($rows as $row) {
-          ?>
-          <p>
-      <ul>
-      	<li>
-              <strong>Title:</strong> <?= $row["Title"] ?>
-          </li>
-          <li>
-              <strong>Author:</strong> <?= $row["Proposer"] ?>
-          </li>
-          <li>
-              <strong>Descri:</strong> <?= $row["description"] ?>
-          </li>
-          <li>
-              <strong>Budget:</strong> <?= $row["budget"] ?>
-          </li>
-      </ul>
-          <br>
-  		<form action="confirmation.php" method="POST">
-          <?php } ?>
-
-
-
-  		<?php
-  			$ques = $db->query("SELECT * FROM questions");
-  			$i = 0;
-  			$j = 100;
-
-  			foreach($ques as $que) {
-  		?>
-  		<div class="col-6">
-  			<?= $que["question"] ?>
-  		<br>
-  			<br>
-  			<?= $que["description"] ?>
-  		</div>
-
-  			<div class="col-6" class="<?= $k ?>">
-    				<input type="range" min="1" max="5" value="3" class="slider" name="<?=  $i ?>">
-  			<br>
-
-  			<img src="num.png" alt="numbers" id="nums">
-  		<br>
-  		<p>Comments:</p>
-  		<textarea name="<?= $j ?>" rows="5" cols="50"></textarea>
-
-  		</div>
-
-  		<br>
-  		<br>
-  		<hr>
-  		<?php $i=$i+1;
-  		$j=$j+1; } ?>
-  		<input type="submit" value="Submit" id="finalS">
-  		</form>
-      </p>
-      <?php }
-//-----------------------------------------------------------------------------
-      ?>
-
-<!--  end create arrays   -->
-
-      <!--  start accordian box   -->
-      <h4><small>RECENT POSTS</small></h4>
-      <hr>
-      <h2>Ranked Proposals</h2>
-  <div class="panel-group" id="accordion">
-
-    <?php
-     $pos = 1;
-     $posAvg = 0;
-      foreach ($proposalArray as $proposal) {
-
-        $k = $proposalArrayAvg[$posAvg];
-
-      ?>
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapse<?php print $pos?>"> <?php print $proposal . " Average Score = " . $k?></a>
-        </h4>
-      </div>
-      <div id="collapse<?php print $pos?>" class="panel-collapse collapse">
-        <div class="panel-body">
-
-          <!--  start radar chart
-          <div id="chartjs-radar">
-          <canvas id="canvas"></canvas>
-          </div>
-          <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js'></script>
-          <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js'></script>
-          <script  src="jScript.js"></script>
--->
-        <?php
-        foreach ($Question as $q)
-        {
-          print ("Question = " . $q . "<br>");
-         }
-         ?>
-         <h2>View comments</h2>
-  <!-- Trigger the modal with a button -->
-
-  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal<?=$pos?>"  >Comments</button>
-
-  <!-- Modal -->
-
-  <div class="modal fade" id="myModal<?=$pos?>" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Comments</h4>
-        </div>
-        <div class="modal-body">
-        <body data-spy="scroll" data-target="#myScrollspy" data-offset="20">
-<!-- Scrollspy -->
-<div class="container">
-  <div class="row">
-    <nav class="col-sm-3" id="myScrollspy">
-      <ul class="nav nav-pills nav-stacked">
-        <li class="active"><a href="#section1">Section 1</a></li>
-        <li><a href="#section2">Section 2</a></li>
-        <li><a href="#section3">Section 3</a></li>
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Section 4 <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#section41">Section 4-1</a></li>
-            <li><a href="#section42">Section 4-2</a></li>
-          </ul>
-        </li>
-      </ul>
-    </nav>
-    <div class="col-sm-9">
-      <div id="section1">
-        <h1>Section 1</h1>
-        <p>Try to scroll this section and look at the navigation list while scrolling!</p>
-      </div>
-      <div id="section2">
-        <h1>Section 2</h1>
-        <p>Try to scroll this section and look at the navigation list while scrolling!
-      </div>
-      <div id="section3">
-        <h1>Section 3</h1>
-        <p>Try to scroll this section and look at the navigation list while scrolling!</p>
-      </div>
-      <div id="section41">
-        <h1>Section 4-1</h1>
-        <p>Try to scroll this section and look at the navigation list while scrolling!</p>
-      </div>
-      <div id="section42">
-        <h1>Section 4-2</h1>
-        <p>Try to scroll this section and look at the navigation list while scrolling!</p>
-      </div>
-    </div>
-  </div>
-</div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <div class="col-sm-2 sidenav" class="fix">
         </div>
       </div>
     </div>
-  </div>
-
-        </div>
-      </div>
-    </div>
-    <?php
-      $pos = $pos + 1;
-      $posAvg = $posAvg + 1;
-     } ?>
-
-      </div>
-    </div>
-    <div class="col-sm-2 sidenav" class="fix">
-    </div>
-  </div>
-</div>
-
-
-<footer class="container-fluid">
-  <p>Footer Text</p>
-</footer>
-
-
-	</body>
-
-
-</html>
+    <footer class="container-fluid">
+      <p>Copyright Green Fee</p>
+    </footer>
+  </body>
+  </html>
