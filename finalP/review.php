@@ -13,9 +13,6 @@
 </head>
 <body>
   <h1>Green Fee Review</h1>
-
-
-
   <form action="review.php" method="POST">
     <div class="form-group">
       <select name="output" class="form-control" id="sell">
@@ -30,14 +27,10 @@
           $i = $i + 1;
         }
         ?>
-
       </select>
     </div>
     <input type="Submit">
   </form>
-
-
-
   <?php
   if (isset($_POST["output"])) {
     $search = $_POST["output"];
