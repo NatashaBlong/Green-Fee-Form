@@ -23,11 +23,6 @@
 <!--  side bar   -->
 <div class="container-fluid">
   <div class="row content">
-        <li><a href="#section3">Family</a></li>
-      <div class="input-group">
-        <input type="text" class="form-control" placeholder="Search Blog..">
-        <span class="input-group-btn">
-          <button class="btn btn-default" type="button">
     <div class="col-sm-2 sidenav" class="sidebars">
     </div>
 
