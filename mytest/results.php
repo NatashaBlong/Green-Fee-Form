@@ -108,14 +108,14 @@ foreach ($proposalArray as $proposal) {
       <div id="collapse<?php print $pos?>" class="panel-collapse collapse">
         <div class="panel-body">
 
-          <!--  start radar chart  -->
+          <!--  start radar chart  
           <div id="chartjs-radar">
           <canvas id="canvas"></canvas>
           </div>
           <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js'></script>
           <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js'></script>
           <script  src="jScript.js"></script>
-
+-->
         <?php
         foreach ($Question as $q)
         {
@@ -124,10 +124,12 @@ foreach ($proposalArray as $proposal) {
          ?>
          <h2>View comments</h2>
   <!-- Trigger the modal with a button -->
-  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Comments</button>
+ 
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal<?=$pos?>"  >Comments</button>
 
   <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
+  
+  <div class="modal fade" id="myModal<?=$pos?>" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
@@ -135,7 +137,48 @@ foreach ($proposalArray as $proposal) {
           <h4 class="modal-title">Comments</h4>
         </div>
         <div class="modal-body">
-          <p> Comments list</p>
+        <body data-spy="scroll" data-target="#myScrollspy" data-offset="20">
+<!-- Scrollspy -->
+<div class="container">
+  <div class="row">
+    <nav class="col-sm-3" id="myScrollspy">
+      <ul class="nav nav-pills nav-stacked">
+        <li class="active"><a href="#section1">Section 1</a></li>
+        <li><a href="#section2">Section 2</a></li>
+        <li><a href="#section3">Section 3</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Section 4 <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#section41">Section 4-1</a></li>
+            <li><a href="#section42">Section 4-2</a></li>                     
+          </ul>
+        </li>
+      </ul>
+    </nav>
+    <div class="col-sm-9">
+      <div id="section1">    
+        <h1>Section 1</h1>
+        <p>Try to scroll this section and look at the navigation list while scrolling!</p>
+      </div>
+      <div id="section2"> 
+        <h1>Section 2</h1>
+        <p>Try to scroll this section and look at the navigation list while scrolling!
+      </div>        
+      <div id="section3">         
+        <h1>Section 3</h1>
+        <p>Try to scroll this section and look at the navigation list while scrolling!</p>
+      </div>
+      <div id="section41">         
+        <h1>Section 4-1</h1>
+        <p>Try to scroll this section and look at the navigation list while scrolling!</p>
+      </div>      
+      <div id="section42">         
+        <h1>Section 4-2</h1>
+        <p>Try to scroll this section and look at the navigation list while scrolling!</p>
+      </div>
+    </div>
+  </div>
+</div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -143,7 +186,7 @@ foreach ($proposalArray as $proposal) {
       </div>
     </div>
   </div>
-
+     
         </div>
       </div>
     </div>
