@@ -97,7 +97,7 @@ foreach ($proposalArray as $proposal) {
       foreach ($proposalArray as $proposal) {
 
         $k = $proposalArrayAvg[$posAvg];
-        
+
       ?>
     <div class="panel panel-default">
       <div class="panel-heading">
