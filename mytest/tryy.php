@@ -9,6 +9,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <script src="jScript.js"></script>
   <style>
   /* Full-width input fields */
   input[type=text], input[type=password] {
@@ -182,7 +183,7 @@
                       <a data-toggle="collapse" data-parent="#accordion" href="#collapse<?php print $pos?>"> <?php print $que["question"]?></a>
                     </h4>
                   </div>
-                  <div id="collapse<?php print $pos?>" class="panel-collapse collapse in">
+                  <?php print '<div id="collapse'.$pos.'" class="panel-collapse collapse in">'?>
                     <div class="panel-body">
 
                       <div class="col-6" class="<?= $k ?>">
@@ -202,9 +203,7 @@
                           </div>
 
                         </div>
-                        <?php print '<button type="button" id="button'.$pos.'"class="btn btn-success" class="'.$pos.'">Next Question</button>';
-                        // on click call on method in js
-                        ?>
+                        <?php print '<button type="button" id="button'.$pos.'" class="'.$pos.'" class="btn btn-success" onclick="closeAcord()">Next Question</button>';?>
                       </div>
                     </div>
                   </div>
