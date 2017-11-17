@@ -202,7 +202,7 @@
                           </div>
 
                         </div>
-                        <?php print '<button type="button" id="button'.$pos.'"class="btn btn-success">Next Question</button>';
+                        <?php print '<button type="button" id="button'.$pos.'"class="btn btn-success" class="'.$pos.'">Next Question</button>';
                         // on click call on method in js
                         ?>
                       </div>
@@ -223,12 +223,6 @@
     </div>
     <footer class="container-fluid">
       <p>Copyright Green Fee</p>
-
-
-
-
-
-
     </footer>
   </body>
   </html>
