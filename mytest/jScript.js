@@ -1,4 +1,8 @@
-new Chart(document.getElementById("radar-chart"), {
+
+
+
+for (i = 1; i < 5; i++) {
+new Chart(document.getElementById("radar-chart" + i), {
     type: 'radar',
     data: {
       labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
@@ -30,6 +34,7 @@ new Chart(document.getElementById("radar-chart"), {
       }
     }
 });
+}
 
 // --------- Review Questionair -----------
 

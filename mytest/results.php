@@ -91,7 +91,7 @@
               <div class="panel-body">
 
 
-                <canvas id="radar-chart" width="800" height="600"></canvas>
+                <canvas id="radar-chart<?= $pos?>" width="600" height="400"></canvas>
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
                 <script  src="jScript.js"></script>
 
@@ -166,7 +166,6 @@
                     </div>
                   </div>
                 </div>
-
               </div>
             </div>
           </div>
@@ -174,6 +173,11 @@
           $pos = $pos + 1;
           $posAvg = $posAvg + 1;
         } ?>
+          <br>
+        <hr>
+
+
+
       </div>
     </div>
     <div class="col-sm-2 sidenav" class="fix">
