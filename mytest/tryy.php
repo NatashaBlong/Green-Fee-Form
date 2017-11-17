@@ -107,7 +107,6 @@
   </style>
 </head>
 <body>
-
   <!--  Top header   -->
   <div class="jumbotron">
     <div class="container text-center">
@@ -186,15 +185,23 @@
                   <div id="collapse<?php print $pos?>" class="panel-collapse collapse in">
                     <div class="panel-body">
 
-                      <?= $que["description"] ?>
-
                       <div class="col-6" class="<?= $k ?>">
-                        <input type="range" min="1" max="5" value="3" class="slider" name="<?=  $i ?>">
-                        <br>
-                        <img src="num.png" alt="numbers" id="nums">
-                        <br>
-                        <p>Comments:</p>
-                        <textarea name="<?= $j ?>" rows="5" cols="50"></textarea>
+
+                        <div class="row">
+                          <div class="col-xs-6">
+                            <?= $que["description"] ?> <br>
+                            <input type="range" min="1" max="5" value="3" class="slider" name="<?=  $i ?>">
+                            <br>
+                            <img src="num.png" alt="numbers" id="nums">
+                            <br>
+                          </div>
+
+                          <div class="col-xs-6">
+                            Comments:
+                            <textarea name="<?= $j ?>" rows="5" cols="50"></textarea>
+                          </div>
+
+                        </div>
                         <?php print '<button type="button" id="button'.$pos.'"class="btn btn-success">Next Question</button>';
                         // on click call on method in js
                         ?>
@@ -216,6 +223,12 @@
     </div>
     <footer class="container-fluid">
       <p>Copyright Green Fee</p>
+
+
+
+
+
+
     </footer>
   </body>
   </html>

@@ -32,8 +32,3 @@ new Chart(document.getElementById("radar-chart"), {
 });
 
 // --------- Review Questionair -----------
-
-function close()
-{
-
-}
