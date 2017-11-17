@@ -99,10 +99,11 @@
               <div class="panel-body">
 
 
-                <canvas id="radar-chart<?= $pos?>" width="600" height="400"></canvas>
+                <canvas id="radar-chart<?= $pos?>" width="800" height="400"></canvas>
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
                 <script  src="jScript.js"></script>
-
+                <br>
+              <hr>
 
             <?php
             foreach ($Question as $q)
