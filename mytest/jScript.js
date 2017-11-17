@@ -37,8 +37,3 @@ new Chart(document.getElementById("radar-chart" + i), {
 }
 
 // --------- Review Questionair -----------
-
-function close()
-{
-
-}
