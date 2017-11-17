@@ -87,7 +87,15 @@
                 <a data-toggle="collapse" data-parent="#accordion" href="#collapse<?php print $pos?>"> <?php print $proposal . " Average Score = " . $k?></a>
               </h4>
             </div>
-            <div id="collapse<?php print $pos?>" class="panel-collapse collapse">
+            <?php if($pos == 1)
+            {
+            print '<div id="collapse'. $pos .'" class="panel-collapse collapse in">';
+            }
+            else
+            {
+              print '<div id="collapse'. $pos .'" class="panel-collapse collapse">';
+            }
+            ?>
               <div class="panel-body">
 
 
