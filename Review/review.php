@@ -68,6 +68,7 @@
           <!--  end create arrays   -->
 
           <!--  start accordian box   -->
+          <form action="confirmation.php" method="POST">
           <?php
           if (isset($_POST["output"]) && isset($_POST["name"]) && isset($_POST["psw"])) { ?>
             <div class="panel-group" id="accordion">
@@ -119,6 +120,8 @@
             </div>
           <?php  } ?>
           <!--  end accordian box   -->
+          <button type="submit">Submit Review</button>
+        </form>
         </div>
         <div class="col-sm-2 sidenav" class="fix">
         </div>
