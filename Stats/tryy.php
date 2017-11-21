@@ -1,6 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+
+
+
+  <script type="text/javascript"> // create a javascript array that is the same as the $score array
+  var scores = <?php echo json_encode($score); ?>;
+  for (i=0; i<2; i++)
+  {
+    alert(scores[i]);
+  }
+  </script>
+
+
+
+
+
+
   <title>test result page</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,105 +26,9 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-  <script src="jScript.js"></script>
-  <style>
-  /* Full-width input fields */
-  input[type=text], input[type=password] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-  }
-
-  /* Set a style for all buttons */
-  button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-  }
-
-  button:hover {
-    opacity: 0.8;
-  }
-
-  /* Extra styles for the cancel button */
-  .cancelbtn {
-    width: auto;
-    padding: 10px 18px;
-    background-color: #f44336;
-  }
-
-  img.avatar {
-    width: 40%;
-    border-radius: 50%;
-  }
-
-  .container {
-    padding: 16px;
-    width: 80%;
-  }
-
-  span.psw {
-    float: right;
-    padding-top: 16px;
-  }
-
-  /* The Modal (background) */
-  .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    padding-top: 60px;
-  }
-
-  /* Modal Content/Box */
-  .modal-content {
-    background-color: #fefefe;
-    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-    border: 1px solid #888;
-    width: 25%; /* Could be more or less, depending on screen size */
-  }
-  /* Add Zoom Animation */
-  .animate {
-    -webkit-animation: animatezoom 0.6s;
-    animation: animatezoom 0.6s
-  }
-
-  @-webkit-keyframes animatezoom {
-    from {-webkit-transform: scale(0)}
-    to {-webkit-transform: scale(1)}
-  }
-
-  @keyframes animatezoom {
-    from {transform: scale(0)}
-    to {transform: scale(1)}
-  }
-  /* Change styles for span and cancel button on extra small screens */
-  @media screen and (max-width: 300px) {
-    span.psw {
-      display: block;
-      float: none;
-    }
-    .cancelbtn {
-      width: 100%;
-    }
-  }
-  </style>
 </head>
 <body>
+
   <!--  Top header   -->
   <div class="jumbotron">
     <div class="container text-center">
@@ -122,106 +43,202 @@
       <div class="col-sm-2 sidenav" class="sidebars">
       </div>
 
-      <!--  questions to enter quiz   -->
+      <!--  first stats box   -->
       <div class="col-sm-8">
+        <h4><small>Data</small></h4>
+        <hr>
+        <h2>Proposal Average Scores</h2>
         <?php
-        if (!isset($_POST["name"])) { ?>
-        <body onload="document.getElementById('id01').style.display='block'">
-        <?php } ?>
-          <div id="id01" class="modal">
+        $p = 150;
+        $g = 0;
+        $db = new PDO("mysql:dbname=344Database", "root", "");
+        //$proposalArray = array("proposal 1", "proposal 2","proposal 3", "proposal 4");
+        //$proposalArrayAvg = array("4.5", "4.1", "3.2", "2.2");
+        $commentList = array("comment1", "comment2","comment3", "comment4");
+        $Question = array("Question1", "Question2","Question3", "Question4","Question5", "Question6","Question7", "Question8");
+        $x = 1;
+        $y = 1;
+        ?>
 
-            <form class="modal-content animate" action="tryy.php" method="POST">
+        <!--  end create arrays   -->
 
-              <div class="container">
-                <label><b><h3>Please Log in and select a proposal to review:</h3></b></label>
+        <!--  progress bars  -->
+        <?php
+  $i = 1;
+    $rows = $db->query("SELECT * FROM test;");
+        foreach ($rows as $row) {
 
-                <label><b>Name</b></label>
-                <input type="text" placeholder="Enter Name" name="name" required ><br>
 
-                <label><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" name="psw" required><br><br>
+  $avgscore = $db->query("SELECT AVG(score) as qscores FROM scores where proposalid = '".$i."' ");
+    foreach($avgscore as $ascore) {
 
-                <label><b>Select a Proposal</b></label>
-                <select name="output" class="form-control" id="sell">
-                  <?php
-                  $db = new PDO("mysql:dbname=344Database", "root", "");
-                  $lines = $db->query("SELECT Title FROM test");
-                  $i = 1;
-                  foreach ($lines as $line) {
-                    ?>
-                    <option value="<?= $line["Title"] ?>"> <?= $line["Title"] ?> </option>
-                    <?php
-                    $i = $i + 1;
-                  }
-                  ?>
-                </select><br>
-                <button type="submit">Proceed to Proposal Review</button><br>
-              </div>
-              <div class="container" style="background-color:#f1f1f1">
-              </div>
-            </form>
+      $averages = $ascore["qscores"] * 20;
+    }
+
+  ?>
+          <div class="progress">
+            <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar"
+            aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:<?= $averages ?>%">
+            <?= $row["Title"] . "Average Score = " . $averages ?>
           </div>
-          <!--  end create arrays   -->
+        </div>
+        <?php
+        $i++;
+      } ?>
+      <p>Use this box to talk about what the graph above means
+      </p>
+      <br><br>
+      <!--  start accordian box   -->
+      <h4><small>RECENT POSTS</small></h4>
+      <hr>
+      <h2>Ranked Proposals</h2>
+      <div class="panel-group" id="accordion">
 
-          <!--  start accordian box   -->
+        <?php
+        $proposalArray = $db->query("SELECT * FROM test;"); // getting everything from test
+        $pos = 1; //
+        $posAvg = 0; // average value
+        $t = 1;
+        $propnum = $db->query("SELECT count(Title) FROM test"); // Getting the number of proposals in the database
+        $quesNum = $db->query("SELECT count(question) FROM questions"); // Getting the number of questions in the database
+        foreach ($proposalArray as $proposal) {
+          //$k = $avgscore;
+          ?>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse<?php print $pos?>"> <?= $proposal["Title"] ?></a>
+              </h4>
+            </div>
+            <?php if($pos == 1)
+            {
+            print '<div id="collapse'. $pos .'" class="panel-collapse collapse in">';
+            }
+            else
+            {
+              print '<div id="collapse'. $pos .'" class="panel-collapse collapse">';
+            }
+            ?>
+              <div class="panel-body">
+            <div style="display: none;">
+    <?php
+      $getques = $db->query("SELECT * FROM scores;");
+      $z = 250;
+      foreach($getques as $getqu) {
+          $h = $getqu["question"];
+          ?>
+          <span id="<?= $z ?>"> <?= $h ?> </span>
+
           <?php
-          if (isset($_POST["output"]) && isset($_POST["name"]) && isset($_POST["psw"])) { ?>
-            <div class="panel-group" id="accordion">
-              <?php
+          $z = $z + 1;
+      }?>
+    </div>
+              <div style="display: none;">
+    <?php
+      $graphq = $db->query("SELECT * FROM scores where proposalid = '".$t."'; "); // score of each question
+      foreach($graphq as $gques) // for each to iterate through the score of each question
+      {
+          $r = $gques["score"]; // setting r to the score of the particular question
+          print '<span id="'.$p.'"> <?= $r ?> </span>'; // setting id to 150, number to score
+          print $r; //print value of r to test
+          print $p; // print value of p to test
+          $p = $p + 1; // increase p by one
+      }
+      $t = $t + 1; // increase t by one
+        ?>
+      </div>
+      <canvas id="radar-chart<?= $pos?>" width="800" height="400"></canvas>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+      <script  src="jScript.js"></script>
+                <br>
+              <hr>
+            <?php
+            $Question = $db->query("SELECT * FROM questions;"); // getting everything from questions
+            foreach ($Question as $q) // iterating through questions
+            {
+              print ("Question = " . $q["question"] . "<br>"); // printing questions
+            }
+            ?>
+            <h2>View comments</h2>
+            <!-- Trigger the modal with a button -->
+            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal<?=$pos?>"  >Comments</button>
 
-              $pos = 1; //counter
-              $posAvg = 0;
+            <!-- Modal -->
 
-              $ques = $db->query("SELECT * FROM questions");
-              $i = 0;
-              $j = 100;
-              foreach($ques as $que) {
-                ?>
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                    <h4 class="panel-title">
-                      <a data-toggle="collapse" data-parent="#accordion" href="#collapse<?php print $pos?>"> <?php print $que["question"]?></a>
-                    </h4>
+            <div class="modal fade" id="myModal<?=$pos?>" role="dialog">
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Comments</h4>
                   </div>
-                  <?php print '<div id="collapse'.$pos.'" class="panel-collapse collapse in">'?>
-                    <div class="panel-body">
-
-                      <div class="col-6" class="<?= $k ?>">
-
+                  <div class="modal-body">
+                    <body data-spy="scroll" data-target="#myScrollspy" data-offset="20">
+                      <!-- Scrollspy -->
+                      <div class="container">
                         <div class="row">
-                          <div class="col-xs-6">
-                            <?= $que["description"] ?> <br>
-                            <input type="range" min="1" max="5" value="3" class="slider" name="<?=  $i ?>">
-                            <br>
-                            <img src="num.png" alt="numbers" id="nums">
-                            <br>
+                          <nav class="col-sm-3" id="myScrollspy">
+                            <ul class="nav nav-pills nav-stacked">
+                              <li class="active"><a href="#section1">Section 1</a></li>
+                              <li><a href="#section2">Section 2</a></li>
+                              <li><a href="#section3">Section 3</a></li>
+                              <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Section 4 <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                  <li><a href="#section41">Section 4-1</a></li>
+                                  <li><a href="#section42">Section 4-2</a></li>
+                                </ul>
+                              </li>
+                            </ul>
+                          </nav>
+                          <div class="col-sm-9">
+                            <div id="section1">
+                              <h1>Section 1</h1>
+                              <p>Try to scroll this section and look at the navigation list while scrolling!</p>
+                            </div>
+                            <div id="section2">
+                              <h1>Section 2</h1>
+                              <p>Try to scroll this section and look at the navigation list while scrolling!</p>
+                              </div>
+                              <div id="section3">
+                                <h1>Section 3</h1>
+                                <p>Try to scroll this section and look at the navigation list while scrolling!</p>
+                              </div>
+                              <div id="section41">
+                                <h1>Section 4-1</h1>
+                                <p>Try to scroll this section and look at the navigation list while scrolling!</p>
+                              </div>
+                              <div id="section42">
+                                <h1>Section 4-2</h1>
+                                <p>Try to scroll this section and look at the navigation list while scrolling!</p>
+                              </div>
+                            </div>
                           </div>
-
-                          <div class="col-xs-6">
-                            Comments:
-                            <textarea name="<?= $j ?>" rows="5" cols="50"></textarea>
-                          </div>
-
                         </div>
-                        <?php print '<button type="button" id="button'.$pos.'" class="'.$pos.'" class="btn btn-success" onclick="closeAcord()">Next Question</button>';?>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                       </div>
                     </div>
                   </div>
                 </div>
-                <?php
-                $pos = $pos + 1;
-                $posAvg = $posAvg + 1;
-              } ?>
+              </div>
             </div>
-          <?php  } ?>
-          <!--  end accordian box   -->
-        </div>
-        <div class="col-sm-2 sidenav" class="fix">
-        </div>
+          </div>
+          <?php
+          $pos = $pos + 1;
+          $posAvg = $posAvg + 1;
+        } ?>
+          <br>
+        <hr>
       </div>
     </div>
-    <footer class="container-fluid">
-      <p>Copyright Green Fee</p>
-    </footer>
-  </body>
-  </html>
+    <div class="col-sm-2 sidenav" class="fix">
+    </div>
+  </div>
+</div>
+<footer class="container-fluid">
+  <p>Footer Text</p>
+</footer>
+</body>
+</html>
