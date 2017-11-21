@@ -127,8 +127,8 @@
 		  }
 		?></div>
             
+         
               
-  <!--          
               <div style="display: none;">
 		<?php
 		  $graphq = $db->query("SELECT * FROM scores where proposalid = '".$t."'; ");
@@ -143,29 +143,82 @@
 		  }
 		  $t = $t + 1; 
 		?></div>
-
+   <!--  
 		<span id="150"> <?= $g ?> </span>
 		<span id="151"> <?= $r ?> </span> 		
               
             <canvas id="radar-chart<?= $pos?>" width="800" height="400"></canvas>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-			<script  src="jScript.js"></script>
-				*/
+      <script  src="jScript.js"></script>
+    -->
+
+
+    <!-- info box above table -->
+
+      <h5>Title: </h6>
+      <p>  <?= $proposal["Title"] ?>       </p>
+      <h5>Proposer: </h6>
+      <p>    <?= $proposal["Proposer"] ?>      </p>
+      <h5>Budget: </h6>
+      <p>    <?= $proposal["budget"] ?>      </p>
+      <h5>Description: </h6>
+      <p>   <?= $proposal["description"] ?>        </p>
+
+
+    <!-- start table -->
+    <table class="table table-responsive">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>Question</th>
+      <th>Average Score</th>
+      <th># Of Comments</th>
+    </tr>
+  </thead>
+  <tbody>
+     <!-- make this following <tr> in a loop for as many queastions as there are -->
+   
+     <?php
+           
+            $questionCounter = 1;
+            $Question = $db->query("SELECT * FROM questions;");
+            $t = 1;
+            $graphq = $db->query("SELECT * FROM scores where proposalid = '".$t."'; ");
+            foreach ($Question as $q)
+            {
+
+              
+            ?>
+     <tr>
+      <th scope="row"><?=  $questionCounter ;?></th>
+      <td><?=  $q["question"] ;?></td>
+      <td><?=  $r ?></td>
+      <td>3</td>
+    </tr>
+
+              <?php 
+              
+              
+      
+          $questionCounter++;
+         
+          } 
+
+          $t++;
+          ?>
+           
+  </tbody>
+
+
+    </table>
+          
+				
 			
-                -->
-
-
-
+                
                 <br>
               <hr>
 
-            <?php
-            $Question = $db->query("SELECT * FROM questions;");
-            foreach ($Question as $q)
-            {
-              print ("Question = " . $q["question"] . "<br>");
-            }
-            ?>
+          
             <h2>View comments</h2>
             <!-- Trigger the modal with a button -->
 
