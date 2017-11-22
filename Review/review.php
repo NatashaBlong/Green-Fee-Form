@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="OtherStyleStuff.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
@@ -48,12 +49,12 @@
                 <label><b>Select a Proposal</b></label>
                 <select name="output" class="form-control" id="sell">
                   <?php
-                  $db = new PDO("mysql:dbname=344Database", "root", "");
-                  $lines = $db->query("SELECT Title FROM test");
+                  $db = new PDO("mysql:dbname=finalreview", "root", "");
+                  $lines = $db->query("SELECT title FROM project");
                   $i = 1;
                   foreach ($lines as $line) {
                     ?>
-                    <option value="<?= $line["Title"] ?>"> <?= $line["Title"] ?> </option>
+                    <option value="<?= $line["title"] ?>"> <?= $line["title"] ?> </option>
                     <?php
                     $i = $i + 1;
                   }
@@ -77,7 +78,7 @@
               $pos = 1; //counter
               $posAvg = 0;
 
-              $ques = $db->query("SELECT * FROM questions");
+              $ques = $db->query("SELECT * FROM question");
               $i = 0;
               $j = 100;
               foreach($ques as $que) {
@@ -85,7 +86,7 @@
                 <div class="panel panel-default">
                   <div class="panel-heading">
                     <h4 class="panel-title">
-                      <a data-toggle="collapse" data-parent="#accordion" href="#collapse<?php print $pos?>"> <?php print $que["question"]?></a>
+                      <a data-toggle="collapse" data-parent="#accordion" href="#collapse<?php print $pos?>"> <?php print $que["text"]?></a>
                     </h4>
                   </div>
                   <?php print '<div id="collapse'.$pos.'" class="panel-collapse collapse in">'?>
@@ -95,7 +96,7 @@
 
                         <div class="row">
                           <div class="col-xs-6">
-                            <?= $que["description"] ?> <br>
+                            <?= $que["text"] ?> <br>
                             <input type="range" min="1" max="5" value="3" class="slider" name="<?=  $i ?>">
                             <br>
                             <img src="num.png" alt="numbers" id="nums">
