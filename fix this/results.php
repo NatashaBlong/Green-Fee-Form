@@ -32,7 +32,7 @@
         <hr>
         <h2>Proposal Average Scores</h2>
         <?php
-		$db = new PDO("mysql:dbname=344project", "root", "");
+		$db = new PDO("mysql:dbname=344Database", "root", "");
         $proposalArray = array("proposal 1", "proposal 2","proposal 3", "proposal 4");
         $proposalArrayAvg = array("4.5", "4.1", "3.2", "2.2");
         $commentList = array("comment1", "comment2","comment3", "comment4");
@@ -128,7 +128,7 @@
 		?></div>
             
               
-              
+  <!--          
               <div style="display: none;">
 		<?php
 		  $graphq = $db->query("SELECT * FROM scores where proposalid = '".$t."'; ");
@@ -150,9 +150,12 @@
             <canvas id="radar-chart<?= $pos?>" width="800" height="400"></canvas>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 			<script  src="jScript.js"></script>
-				
+				*/
 			
-                
+                -->
+
+
+
                 <br>
               <hr>
 

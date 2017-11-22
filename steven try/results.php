@@ -5,12 +5,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" href="statStyle.css">
+  <link rel="stylesheet" href="style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 </head>
 <body>
+
   <!--  Top header   -->
   <div class="jumbotron">
     <div class="container text-center">
@@ -18,40 +19,45 @@
       <p>put something here</p>
     </div>
   </div>
+
   <!--  side bar   -->
   <div class="container-fluid">
     <div class="row content">
       <div class="col-sm-2 sidenav" class="sidebars">
       </div>
+
       <!--  first stats box   -->
       <div class="col-sm-8">
         <h4><small>Data</small></h4>
         <hr>
         <h2>Proposal Average Scores</h2>
         <?php
-        $db = new PDO("mysql:dbname=344Database", "root", "");
-//-------------------------Getting Questions to use later----------------------------------------------
-        $gettingQuestion = $db->query("SELECT * FROM questions;"); // Get everything from scores
-        $q = 0;
-        foreach ($gettingQuestion as $getQuestion) {
-          $question[$q] = $getQuestion["question"];
-          $q = $q + 1;
-        }
-//------------------------------------------------------------------------------------------------------
+		$db = new PDO("mysql:dbname=344Database", "root", "");
+        $proposalArray = array("proposal 1", "proposal 2","proposal 3", "proposal 4");
+        $proposalArrayAvg = array("4.5", "4.1", "3.2", "2.2");
+        $commentList = array("comment1", "comment2","comment3", "comment4");
+        $Question = array("Question1", "Question2","Question3", "Question4","Question5", "Question6","Question7", "Question8");
+        $x = 1;
+        $y = 1;
         ?>
-        <script type="text/javascript"> // create a javascript array that is the same as the $score array
-        var question = <?php echo json_encode($question); ?>;
-        </script>
+
+        <!--  end create arrays   -->
 
         <!--  progress bars  -->
         <?php
-        $a = 1;
-        $rows = $db->query("SELECT * FROM test;");
+	$i = 1;
+
+	
+    $rows = $db->query("SELECT * FROM test;");
         foreach ($rows as $row) {
-        $avgscore = $db->query("SELECT AVG(score) as qscores FROM scores where proposalid = '".$a."' ");
-          foreach($avgscore as $ascore) {
-            $averages = $ascore["qscores"] * 20;
-          } ?>
+    
+	$avgscore = $db->query("SELECT AVG(score) as qscores FROM scores where proposalid = '".$i."' ");
+		foreach($avgscore as $ascore) {
+			
+			$averages = $ascore["qscores"] * 20;
+		}
+
+  ?>
           <div class="progress">
             <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar"
             aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:<?= $averages ?>%">
@@ -59,7 +65,7 @@
           </div>
         </div>
         <?php
-        $a++;
+        $i++;
       } ?>
       <p>Use this box to talk about what the graph above means
       </p>
@@ -71,15 +77,18 @@
       <hr>
       <h2>Ranked Proposals</h2>
       <div class="panel-group" id="accordion">
+
         <?php
-        $proposalArray = $db->query("SELECT * FROM test;"); // getting everything from test
-        $pos = 1; //
-        $posAvg = 0; // average value
-        //$t = 1;
-        $propnum = $db->query("SELECT count(Title) FROM test"); // Getting the number of proposals in the database
-        $quesNum = $db->query("SELECT count(question) FROM questions"); // Getting the number of questions in the database
+        $proposalArray = $db->query("SELECT * FROM test;");
+        $pos = 1;
+        $posAvg = 0;
+        $t = 1;
         foreach ($proposalArray as $proposal) {
-          //$k = $avgscore;
+		
+		
+		
+          $k = $proposalArrayAvg[$posAvg];
+
           ?>
           <div class="panel panel-default">
             <div class="panel-heading">
@@ -97,41 +106,119 @@
             }
             ?>
               <div class="panel-body">
-                <?php
-                //$gettingScore = $db->query("SELECT AVG(score) as avgScore FROM scores where proposalid = '1'");
-                  $gettingScore = $db->query("SELECT AVG(score) as avgScore FROM scores where proposalid = '".$pos."'");
-                  // Get the average score, as avgScore from scores
-                  //where the proposal id is $pos (starts at 1 (in larger loop that goes up to proposal.count))
-                  foreach ($gettingScore as $setScore) {
-                    $getScore = $setScore["avgScore"];
-                  }
-                  $score = []; // Array of average score for each question
-                  $s = 0;
-                  $gettingCount = $db->query("SELECT * FROM questions;"); // Get everything from scores
-                    foreach ($gettingCount as $getCount) {
-                    //  print $getScore;
-                      $score[$s] = $getScore * 20;
-                      //print $score[$s];
-                      $s = $s + 1;
-                    } ?>
+              
+              
+              
+            
+            
+            
+            <div style="display: none;">
+		<?php
+		  $getques = $db->query("SELECT * FROM scores;");
+		  $z = 250;
+		  foreach($getques as $getqu) {
+		  		$h = $getqu["question"];
+		  		?>
+		  		<span id="<?= $z ?>"> <?= $h ?> </span>
 
-                    <script type="text/javascript"> // create a javascript array that is the same as the $score array
-                    var scores = <?php echo json_encode($score); ?>;
+		  		<?php
+		  		$z = $z + 1;
+		  		
+		  }
+		?></div>
+            
+         
+              
+              <div style="display: none;">
+		<?php
+		  $graphq = $db->query("SELECT * FROM scores where proposalid = '".$t."'; ");
+		  $p = 150;
+		  $g = 0;
+		  foreach($graphq as $gques) {
+		  		$r = $gques["score"];
+		  		if($p==150){
+					$g = $r;
+				}
+		  		$p = $p + 1;
+		  }
+		  $t = $t + 1; 
+		?></div>
+   <!--  
+		<span id="150"> <?= $g ?> </span>
+		<span id="151"> <?= $r ?> </span> 		
+              
+            <canvas id="radar-chart<?= $pos?>" width="800" height="400"></canvas>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+      <script  src="jScript.js"></script>
+    -->
 
-                    </script>
 
-                <canvas id="radar-chart<?= $pos?>" width="800" height="400"></canvas>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-                <script  src="jScript.js"></script>
+    <!-- info box above table -->
+
+      <h5>Title: </h6>
+      <p>  <?= $proposal["Title"] ?>       </p>
+      <h5>Proposer: </h6>
+      <p>    <?= $proposal["Proposer"] ?>      </p>
+      <h5>Budget: </h6>
+      <p>    <?= $proposal["budget"] ?>      </p>
+      <h5>Description: </h6>
+      <p>   <?= $proposal["description"] ?>        </p>
+
+
+    <!-- start table -->
+    <table class="table table-responsive">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>Question</th>
+      <th>Average Score</th>
+      <th># Of Comments</th>
+    </tr>
+  </thead>
+  <tbody>
+     <!-- make this following <tr> in a loop for as many queastions as there are -->
+   
+     <?php
+           
+            $questionCounter = 1;
+            $Question = $db->query("SELECT * FROM questions;");
+            $t = 1;
+            $graphq = $db->query("SELECT * FROM scores where proposalid = '".$t."'; ");
+            foreach ($Question as $q)
+            {
+
+              
+            ?>
+     <tr>
+      <th scope="row"><?=  $questionCounter ;?></th>
+      <td><?=  $q["question"] ;?></td>
+      <td><?=  $r ?></td>
+      <td>3</td>
+    </tr>
+
+              <?php 
+              
+              
+      
+          $questionCounter++;
+         
+          } 
+
+          $t++;
+          ?>
+           
+  </tbody>
+
+
+    </table>
+          
+				
+			
+                
                 <br>
               <hr>
-              <?php
-              $Question = $db->query("SELECT * FROM questions;"); // getting everything from questions
-              foreach ($Question as $q) // iterating through questions
-              {
-                print ("Question = " . $q["question"] . "<br>"); // printing questions
-              }
-              ?>
+
+          
             <h2>View comments</h2>
             <!-- Trigger the modal with a button -->
 
@@ -202,6 +289,7 @@
           <?php
           $pos = $pos + 1;
           $posAvg = $posAvg + 1;
+          
         } ?>
           <br>
         <hr>
