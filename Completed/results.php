@@ -110,14 +110,14 @@
                   $gettingCount = $db->query("SELECT * FROM questions;"); // Get everything from scores
                     foreach ($gettingCount as $getCount) {
                     //  print $getScore;
-                      $score[$s] = $getScore * 20;
+                      $score[$s] = $getScore;
                       //print $score[$s];
                       $s = $s + 1;
                     } ?>
 
                     <script type="text/javascript"> // create a javascript array that is the same as the $score array
                     var scores = <?php echo json_encode($score); ?>;
-
+                    var val = <?php echo json_encode($pos); ?>;
                     </script>
 
                 <canvas id="radar-chart<?= $pos?>" width="800" height="400"></canvas>

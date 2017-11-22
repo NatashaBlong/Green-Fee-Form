@@ -1,8 +1,8 @@
 for (i = 1; i < 5; i++) {
-new Chart(document.getElementById("radar-chart" + i), {
+new Chart(document.getElementById("radar-chart" + val), {
     type: 'radar',
     data: {
-      labels: ["Student Experience", "Connection to Campus", "Feasability and Support", "Schedule and Budget", "Accountability", "Innovation", "Enviromental Benefits", "Regional Connection", "Outreach and Education", "Self Sufficiency", "Potential", "Cost/Benefit Analysis"],
+      //labels: ["Student Experience", "Connection to Campus", "Feasability and Support", "Schedule and Budget", "Accountability", "Innovation", "Enviromental Benefits", "Regional Connection", "Outreach and Education", "Self Sufficiency", "Potential", "Cost/Benefit Analysis"],
       //labels: [questions[0],questions[1],questions[2],questions[3],questions[4],questions[5],questions[6],questions[7],questions[8],questions[9],questions[10],questions[11],questions[12]],
         labels: question,
         datasets: [
