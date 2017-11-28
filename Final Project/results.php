@@ -5,10 +5,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
   <link rel="stylesheet" href="statStyle.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 </head>
 <body>
   <!--  Top header   -->
@@ -38,12 +38,20 @@
           $question[$q] = $getQuestion["title"];
           $q = $q + 1;
         }
+        $propnum = $db->query("SELECT * FROM question"); // Getting the number of proposals in the database
+        $numNeeded = 0;
+        foreach ($propnum as $proo) {
+          $numNeeded = $numNeeded + 1;
+        }
 //------------------------------------------------------------------------------------------------------
         ?>
+        <span id="jsanum" style="display: none;">
+
+        		<?= $numNeeded ?>
+        </span>
         <script type="text/javascript"> // create a javascript array that is the same as the $score array
         var question = <?php echo json_encode($question); ?>;
         </script>
-
         <!--  progress bars  -->
         <?php
         $a = 1;
@@ -66,8 +74,6 @@
       <p>Use this box to talk about what the graph above means
       </p>
       <br><br>
-
-
       <!--  start accordian box   -->
       <h4><small>RECENT POSTS</small></h4>
       <hr>
@@ -81,8 +87,10 @@
         $propnum = $db->query("SELECT count(title) FROM project"); // Getting the number of proposals in the database
         $quesNum = $db->query("SELECT count(title) FROM question"); // Getting the number of questions in the database
         foreach ($proposalArray as $proposal) {
+
         $quess=1;
         $quess = str_pad ($quess, 3, '0', STR_PAD_LEFT);
+
           //$k = $avgscore;
           ?>
           <div class="panel panel-default">
@@ -107,25 +115,26 @@
                  for ($z = 0; $z<12; $z++){
 
                   $gettingScore = $db->query("SELECT AVG(answer) as avgScore FROM answer where project_id = '".$pos."' AND question_id='".$quess."'  ");
+
+                  // Get the average score, as avgScore from scores
+                  //where the proposal id is $pos (starts at 1 (in larger loop that goes up to proposal.count))
                   foreach ($gettingScore as $setScore) {
                     $getScore = $setScore["avgScore"];
                   }
-                  $gettingCount = $db->query("SELECT AVG(answer) as avgScore FROM answer where project_id = '".$pos."' AND question_id='".$quess."' ");
-                  // Get Average answer as avgScore from answer table where the project id is the proposal number and the question id is question number
+                  $gettingCount = $db->query("SELECT AVG(answer) as avgScore FROM answer where project_id = '".$pos."' AND question_id='".$quess."' "); // Get everything from scores
                     foreach ($gettingCount as $getCount) {
                       $score[$s] = $getScore;
                       $s = $s + 1;
                     }
-                      $quess = $quess + 1;
-                      $quess = str_pad ($quess, 3, '0', STR_PAD_LEFT);
-                    }
+                  $quess = $quess + 1;
+                  $quess = str_pad ($quess, 3, '0', STR_PAD_LEFT);
+                  }
                     ?>
-                    <!-- Echo js values of php values for js page to use -->
-                    <script type="text/javascript">
+                    <script type="text/javascript"> // create a javascript array that is the same as the $score array
                     var scores = <?php echo json_encode($score); ?>;
                     var val = <?php echo json_encode($pos); ?>;
+                    var num = <?php echo json_encode($numNeeded); ?>;
                     </script>
-                    <!-- Radar Chart -->
                 <canvas id="radar-chart<?= $pos?>" width="800" height="400"></canvas>
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
                 <script  src="jScript.js"></script>
@@ -144,6 +153,7 @@
             <!-- Trigger the modal with a button -->
             <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal<?=$pos?>">Comments</button>
             <!-- Modal -->
+
             <div class="modal fade" id="myModal<?=$pos?>" role="dialog">
               <div class="modal-dialog modal-lg">
                 <div class="modal-content">
@@ -223,6 +233,9 @@
         } ?>
           <br>
         <hr>
+
+
+
       </div>
     </div>
     <div class="col-sm-2 sidenav" class="fix">

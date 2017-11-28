@@ -5,8 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="OtherStyleStuff.css">
+  <link rel="stylesheet" href="reviewStyle.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
@@ -16,7 +15,7 @@
   <!--  Top header   -->
   <div class="jumbotron">
     <div class="container text-center">
-      <h1>Student Green Fee Review</h1>
+      <h1>Student Green Fee Review - OLD DATA</h1>
       <p>put something here</p>
     </div>
   </div>
@@ -96,18 +95,16 @@
 
                         <div class="row">
                           <div class="col-xs-6">
-                            <?= $que["text"] ?> <br>
+                            <<?= $que["text"] ?> <br>
                             <input type="range" min="1" max="5" value="3" class="slider" name="<?=  $i ?>">
                             <br>
                             <img src="num.png" alt="numbers" id="nums">
                             <br>
                           </div>
-
                           <div class="col-xs-6">
                             Comments:
                             <textarea name="<?= $j ?>" rows="5" cols="50"></textarea>
                           </div>
-
                         </div>
                         <?php print '<button type="button" id="button'.$pos.'" class="'.$pos.'" class="btn btn-success" onclick="closeAcord()">Next Question</button>';?>
                       </div>

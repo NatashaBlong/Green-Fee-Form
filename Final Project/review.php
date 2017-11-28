@@ -15,7 +15,7 @@
   <!--  Top header   -->
   <div class="jumbotron">
     <div class="container text-center">
-      <h1>Student Green Fee Review</h1>
+      <h1>Student Green Fee Review - OLD DATA</h1>
       <p>put something here</p>
     </div>
   </div>
@@ -48,12 +48,12 @@
                 <label><b>Select a Proposal</b></label>
                 <select name="output" class="form-control" id="sell">
                   <?php
-                  $db = new PDO("mysql:dbname=344Database", "root", "");
-                  $lines = $db->query("SELECT Title FROM test");
+                  $db = new PDO("mysql:dbname=finalreview", "root", "");
+                  $lines = $db->query("SELECT title FROM project");
                   $i = 1;
                   foreach ($lines as $line) {
                     ?>
-                    <option value="<?= $line["Title"] ?>"> <?= $line["Title"] ?> </option>
+                    <option value="<?= $line["title"] ?>"> <?= $line["title"] ?> </option>
                     <?php
                     $i = $i + 1;
                   }
@@ -68,6 +68,7 @@
           <!--  end create arrays   -->
 
           <!--  start accordian box   -->
+          <form action="confirmation.php" method="POST">
           <?php
           if (isset($_POST["output"]) && isset($_POST["name"]) && isset($_POST["psw"])) { ?>
             <div class="panel-group" id="accordion">
@@ -76,7 +77,7 @@
               $pos = 1; //counter
               $posAvg = 0;
 
-              $ques = $db->query("SELECT * FROM questions");
+              $ques = $db->query("SELECT * FROM question");
               $i = 0;
               $j = 100;
               foreach($ques as $que) {
@@ -84,7 +85,7 @@
                 <div class="panel panel-default">
                   <div class="panel-heading">
                     <h4 class="panel-title">
-                      <a data-toggle="collapse" data-parent="#accordion" href="#collapse<?php print $pos?>"> <?php print $que["question"]?></a>
+                      <a data-toggle="collapse" data-parent="#accordion" href="#collapse<?php print $pos?>"> <?php print $que["title"]?></a>
                     </h4>
                   </div>
                   <?php print '<div id="collapse'.$pos.'" class="panel-collapse collapse in">'?>
@@ -94,18 +95,16 @@
 
                         <div class="row">
                           <div class="col-xs-6">
-                            <?= $que["description"] ?> <br>
+                            <<?= $que["text"] ?> <br>
                             <input type="range" min="1" max="5" value="3" class="slider" name="<?=  $i ?>">
                             <br>
                             <img src="num.png" alt="numbers" id="nums">
                             <br>
                           </div>
-
                           <div class="col-xs-6">
                             Comments:
                             <textarea name="<?= $j ?>" rows="5" cols="50"></textarea>
                           </div>
-
                         </div>
                         <?php print '<button type="button" id="button'.$pos.'" class="'.$pos.'" class="btn btn-success" onclick="closeAcord()">Next Question</button>';?>
                       </div>
@@ -115,10 +114,14 @@
                 <?php
                 $pos = $pos + 1;
                 $posAvg = $posAvg + 1;
+                $i=$i+1;
+                $j=$j+1;
               } ?>
             </div>
           <?php  } ?>
           <!--  end accordian box   -->
+          <button type="submit">Submit Review</button>
+        </form>
         </div>
         <div class="col-sm-2 sidenav" class="fix">
         </div>
