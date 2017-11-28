@@ -165,14 +165,14 @@
                                $t = 0;
                                foreach ($QuestionTwo as $quu)
                                {
-                               	if ($t = 0)
-                               	{ ?>
-                               		<li class="active"><a href="#<?= print $quu["question"]?>"><?= print $quu["question"]?></a></li>
+                                if ($t = 0)
+                                { ?>
+                                  <li class="active"><a href="#<?= print $quu["question"]?>"><?= print $quu["question"]?></a></li>
                                   <?php
                                 }
-                               	else
-                               	{ ?>
-                                	<li><a href="#<?= print $quu["question"]?>"><?= print $quu["question"]?></a></li>
+                                else
+                                { ?>
+                                  <li><a href="#<?= print $quu["question"]?>"><?= print $quu["question"]?></a></li>
                                   <?php
                                 }
                                   $t = $t + 1;
@@ -181,29 +181,6 @@
                             </ul>
                           </nav>
                           <div class="col-sm-9">
-                            <?php
-                            $QuestionThree = $db->query("SELECT * FROM questions;"); // getting everything from questions
-                             $o = 0;
-                             $currentQ = "";
-                             foreach ($QuestionThree as $qoo)
-                             { ?>
-                               <div id="<?= print $quu["question"]?>">
-                             	   <h1><?= print $quu["question"]?></h1>
-                             	   <ul>
-                                <?php
-                                // we need to loop throught each question then inside loop through each
-                                // comment attached to that particular question
-                                $comments = $db->query("SELECT * FROM scores"); // getting everything from questions
-
-                           	    foreach($comments as $com)
-                           	    { ?>
-                           	      <li><?= print $com["comment"]?></li>';
-                                  <?php
-                                }
-                             	'</ul>';
-                             }
-                             ?>
-                             </div>
                             <div id="section1">
                               <h1>Section 1</h1>
                               <p>Try to scroll this section and look at the navigation list while scrolling!</p>
