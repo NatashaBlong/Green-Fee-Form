@@ -4,6 +4,7 @@
   <title>test result page</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="statStyle2.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -36,11 +37,6 @@
           $question[$q] = $getQuestion["question"];
           $q = $q + 1;
         }
-        $propnum = $db->query("SELECT Title FROM test"); // Getting the number of proposals in the database
-        $numNeeded = 0;
-        foreach ($propnum as $proo) {
-          $numNeeded = $numNeeded + 1;
-        }
 //------------------------------------------------------------------------------------------------------
         ?>
         <script type="text/javascript"> // create a javascript array that is the same as the $score array
@@ -55,20 +51,21 @@
         $avgscore = $db->query("SELECT AVG(score) as qscores FROM scores where proposalid = '".$a."' ");
           foreach($avgscore as $ascore) {
             $averages = $ascore["qscores"] * 20;
-            $avgTitle = $ascore["qscores"];
+            $averagesTitle = $ascore["qscores"];
           } ?>
           <div class="progress">
             <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar"
             aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:<?= $averages ?>%">
-            <?= $row["Title"] . "Average Score = " . round($avgTitle,2) ?>
+            <?= $row["Title"] . "Average Score = " . round($averagesTitle,2)?>
           </div>
         </div>
         <?php
         $a++;
       } ?>
-      <p>Use this box to talk about what the graph above means
+      <p>The chart above displays each Student Green Fee proposal and its overall score
       </p>
       <br><br>
+
 
       <!--  start accordian box   -->
       <h4><small>RECENT POSTS</small></h4>
@@ -80,7 +77,9 @@
         $pos = 1; //
         $posAvg = 0; // average value
         //$t = 1;
-        //$quesNum = $db->query("SELECT count(question) FROM questions"); // Getting the number of questions in the database
+        $propnum = $db->query("SELECT count(Title) FROM test"); // Getting the number of proposals in the database
+        echo ("alert($propnum)");
+        $quesNum = $db->query("SELECT count(question) FROM questions"); // Getting the number of questions in the database
         foreach ($proposalArray as $proposal) {
           //$k = $avgscore;
           ?>
@@ -116,14 +115,11 @@
                       $score[$s] = $getScore;
                       //print $score[$s];
                       $s = $s + 1;
-                    }
-                    //$numberNeeded = count($propnum);
-                    ?>
+                    } ?>
 
                     <script type="text/javascript"> // create a javascript array that is the same as the $score array
                     var scores = <?php echo json_encode($score); ?>;
                     var val = <?php echo json_encode($pos); ?>;
-                    var num = <?php echo json_encode($numNeeded); ?>;
                     </script>
 
                 <canvas id="radar-chart<?= $pos?>" width="800" height="400"></canvas>
@@ -131,15 +127,13 @@
                 <script  src="jScript.js"></script>
                 <br>
               <hr>
-              <!-- info box above table -->
-                <h5>Title: </h6>
-                <p>  <?= $proposal["Title"] ?>       </p>
-                <h5>Proposer: </h6>
-                <p>    <?= $proposal["Proposer"] ?>      </p>
-                <h5>Budget: </h6>
-                <p>    <?= $proposal["budget"] ?>      </p>
-                <h5>Description: </h6>
-                <p>   <?= $proposal["description"] ?>        </p>
+              <?php
+              $Question = $db->query("SELECT * FROM questions;"); // getting everything from questions
+              foreach ($Question as $q) // iterating through questions
+              {
+                print ("Question = " . $q["question"] . "<br>"); // printing questions
+              }
+              ?>
             <h2>View comments</h2>
             <!-- Trigger the modal with a button -->
 
@@ -161,24 +155,16 @@
                         <div class="row">
                           <nav class="col-sm-3" id="myScrollspy">
                             <ul class="nav nav-pills nav-stacked">
-                              <?php
-                              $QuestionTwo = $db->query("SELECT * FROM questions;"); // getting everything from questions
-                               $le = 0;
-                               foreach ($QuestionTwo as $quu)
-                               {
-                                if ($le == 0)
-                                { ?>
-                                  <li class="active"><a href="#<?=$quu["question"]?>"><?=$quu["question"]?></a></li>
-                                  <?php
-                                }
-                                else
-                                { ?>
-                                  <li><a href="#<?=$quu["question"]?>"><?=$quu["question"]?></a></li>
-                                  <?php
-                                }
-                                  $le = $le + 1;
-                               }
-                               ?>
+                              <li class="active"><a href="#section1">Section 1</a></li>
+                              <li><a href="#section2">Section 2</a></li>
+                              <li><a href="#section3">Section 3</a></li>
+                              <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Section 4 <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                  <li><a href="#section41">Section 4-1</a></li>
+                                  <li><a href="#section42">Section 4-2</a></li>
+                                </ul>
+                              </li>
                             </ul>
                           </nav>
                           <div class="col-sm-9">
