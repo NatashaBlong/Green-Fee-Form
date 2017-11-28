@@ -83,7 +83,7 @@
                       <div class="col-6" class="<?= $k ?>">
                         <div class="row">
                           <div class="col-xs-6">
-                            <<?= $que["text"] ?> <br>
+                            <?= $que["text"] ?> <br>
                             <input type="range" min="1" max="5" value="3" class="slider" name="<?=  $i ?>">
                             <br>
                             <img src="num.png" alt="numbers" id="nums">
