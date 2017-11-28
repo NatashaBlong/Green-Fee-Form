@@ -5,7 +5,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" href="statStyle.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
@@ -162,20 +161,20 @@
                             <ul class="nav nav-pills nav-stacked">
                               <?php
                               $QuestionTwo = $db->query("SELECT * FROM questions;"); // getting everything from questions
-                               $t = 0;
+                               $le = 0;
                                foreach ($QuestionTwo as $quu)
                                {
-                                if ($t = 0)
+                                if ($le == 0)
                                 { ?>
-                                  <li class="active"><a href="#<?= print $quu["question"]?>"><?= print $quu["question"]?></a></li>
+                                  <li class="active"><a href="#<?=$quu["question"]?>"><?=$quu["question"]?></a></li>
                                   <?php
                                 }
                                 else
                                 { ?>
-                                  <li><a href="#<?= print $quu["question"]?>"><?= print $quu["question"]?></a></li>
+                                  <li><a href="#<?=$quu["question"]?>"><?=$quu["question"]?></a></li>
                                   <?php
                                 }
-                                  $t = $t + 1;
+                                  $le = $le + 1;
                                }
                                ?>
                             </ul>
