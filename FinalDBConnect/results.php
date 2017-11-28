@@ -29,12 +29,13 @@
         <hr>
         <h2>Proposal Average Scores</h2>
         <?php
-        $db = new PDO("mysql:dbname=344Database", "root", "");
+        $db = new PDO("mysql:dbname=finalreview", "root", "");
 //-------------------------Getting Questions to use later----------------------------------------------
-        $gettingQuestion = $db->query("SELECT * FROM questions;"); // Get everything from scores
+        $gettingQuestion = $db->query("SELECT * FROM question;"); // Get everything from scores
         $q = 0;
+        
         foreach ($gettingQuestion as $getQuestion) {
-          $question[$q] = $getQuestion["question"];
+          $question[$q] = $getQuestion["title"];
           $q = $q + 1;
         }
 //------------------------------------------------------------------------------------------------------
@@ -46,16 +47,16 @@
         <!--  progress bars  -->
         <?php
         $a = 1;
-        $rows = $db->query("SELECT * FROM test;");
+        $rows = $db->query("SELECT * FROM project;");
         foreach ($rows as $row) {
-        $avgscore = $db->query("SELECT AVG(score) as qscores FROM scores where proposalid = '".$a."' ");
+        $avgscore = $db->query("SELECT AVG(answer) as qscores FROM answer where project_id = '".$a."' ");
           foreach($avgscore as $ascore) {
             $averages = $ascore["qscores"] * 20;
           } ?>
           <div class="progress">
             <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar"
             aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:<?= $averages ?>%">
-            <?= $row["Title"] . "Average Score = " . $averages ?>
+            <?= $row["title"] . "Average Score = " . $averages ?>
           </div>
         </div>
         <?php
@@ -72,19 +73,23 @@
       <h2>Ranked Proposals</h2>
       <div class="panel-group" id="accordion">
         <?php
-        $proposalArray = $db->query("SELECT * FROM test;"); // getting everything from test
+        $proposalArray = $db->query("SELECT * FROM project;"); // getting everything from test
         $pos = 1; //
         $posAvg = 0; // average value
         //$t = 1;
-        $propnum = $db->query("SELECT count(Title) FROM test"); // Getting the number of proposals in the database
-        $quesNum = $db->query("SELECT count(question) FROM questions"); // Getting the number of questions in the database
+        $propnum = $db->query("SELECT count(title) FROM project"); // Getting the number of proposals in the database
+        $quesNum = $db->query("SELECT count(title) FROM question"); // Getting the number of questions in the database
         foreach ($proposalArray as $proposal) {
+        
+        $quess=1;
+        $quess = str_pad ($quess, 3, '0', STR_PAD_LEFT);
+        
           //$k = $avgscore;
           ?>
           <div class="panel panel-default">
             <div class="panel-heading">
               <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse<?php print $pos?>"> <?= $proposal["Title"] ?></a>
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse<?php print $pos ?>"> <?= $proposal["title"] ?></a>
               </h4>
             </div>
             <?php if($pos == 1)
@@ -98,44 +103,58 @@
             ?>
               <div class="panel-body">
                 <?php
-                //$gettingScore = $db->query("SELECT AVG(score) as avgScore FROM scores where proposalid = '1'");
-                  $gettingScore = $db->query("SELECT AVG(score) as avgScore FROM scores where proposalid = '".$pos."'");
+                 $score = []; // Array of average score for each question
+                  $s = 0;
+                 for ($z = 0; $z<12; $z++){
+                
+                  $gettingScore = $db->query("SELECT AVG(answer) as avgScore FROM answer where project_id = '".$pos."' AND question_id='".$quess."'  ");
+                  
                   // Get the average score, as avgScore from scores
                   //where the proposal id is $pos (starts at 1 (in larger loop that goes up to proposal.count))
                   foreach ($gettingScore as $setScore) {
                     $getScore = $setScore["avgScore"];
-                  }
-                  $score = []; // Array of average score for each question
-                  $s = 0;
-                  $gettingCount = $db->query("SELECT * FROM questions;"); // Get everything from scores
+                    
+                 
+                  } 
+                
+                  $gettingCount = $db->query("SELECT AVG(answer) as avgScore FROM answer where project_id = '".$pos."' AND question_id='".$quess."' "); // Get everything from scores
                     foreach ($gettingCount as $getCount) {
-                    //  print $getScore;
-                      $score[$s] = $getScore * 20;
-                      //print $score[$s];
+                      $score[$s] = $getScore;
                       $s = $s + 1;
-                    } ?>
+                    } 
+                    ?>
 
+					<?php
+                  
+                   
+                  $quess = $quess + 1;
+                  $quess = str_pad ($quess, 3, '0', STR_PAD_LEFT);
+                  }
+                  
+                    
+                    ?>
                     <script type="text/javascript"> // create a javascript array that is the same as the $score array
                     var scores = <?php echo json_encode($score); ?>;
-
+                    var val = <?php echo json_encode($pos); ?>;
                     </script>
+					
 
-                <canvas id="radar-chart<?=$pos?>" width="800" height="400"></canvas>
+                <canvas id="radar-chart<?= $pos?>" width="800" height="400"></canvas>
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
                 <script  src="jScript.js"></script>
                 <br>
               <hr>
               <?php
-              $Question = $db->query("SELECT * FROM questions;"); // getting everything from questions
+              $Question = $db->query("SELECT * FROM question;"); // getting everything from questions
               foreach ($Question as $q) // iterating through questions
               {
-                print ("Question = " . $q["question"] . "<br>"); // printing questions
+                print ("Question = " . $q["title"] . "<br>"); // printing questions
               }
               ?>
             <h2>View comments</h2>
             <!-- Trigger the modal with a button -->
 
-            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal<?=$pos?>">Comments</button>
+            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal<?=$pos?>"  >Comments</button>
 
             <!-- Modal -->
 
@@ -153,25 +172,7 @@
                         <div class="row">
                           <nav class="col-sm-3" id="myScrollspy">
                             <ul class="nav nav-pills nav-stacked">
-
-
-
-                            <?php
-                             $t = 0;
-                             for ($t = 0; $t < ; $t++)
-                             {
-                             	if ($t = 0)
-                             	{
-                             		'<li class="active"><a href="#'.question.'">'.question + $t.'</a></li>'
-                             	}
-                             	else
-                             	{
-                              		'<li><a href="#'.question.'">'.question.'</a></li>';
-                              	}
-                             }
-
-                             ?>
-
+                              <li class="active"><a href="#section1">Section 1</a></li>
                               <li><a href="#section2">Section 2</a></li>
                               <li><a href="#section3">Section 3</a></li>
                               <li class="dropdown">
@@ -179,121 +180,11 @@
                                 <ul class="dropdown-menu">
                                   <li><a href="#section41">Section 4-1</a></li>
                                   <li><a href="#section42">Section 4-2</a></li>
-
-
-
                                 </ul>
                               </li>
                             </ul>
                           </nav>
                           <div class="col-sm-9">
-
-
-
-                         <?php
-                         	$o = 0
-                        	for ($o = 0; $0 < ; $o++)
-                             {
-                           '<div id="'.question.'">';
-                          	'<h1>'.desc.'</h1>';
-                          	'<ul>';
-                        	foreach (desc)
-                        	{
-                        	'<li>'.comment.'</li>';
-                        	}
-                          	'</ul>';
-                          }
-                          ?>
-                          </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                          <?php
-                          $QuestionTwo = $db->query("SELECT * FROM questions;"); // getting everything from questions
-                           $t = 0;
-                           foreach ($QuestionTwo as $quu)
-                           {
-                            if ($t = 0)
-                            { ?>
-                              <li class="active"><a href="#<?= print $quu["question"]?>"><?= print $quu["question"]?></a></li>
-                              <?php
-                            }
-                            else
-                            { ?>
-                              <li><a href="#<?= print $quu["question"]?>"><?= print $quu["question"]?></a></li>
-                              <?php
-                            }
-                              $t = $t + 1;
-                           }
-                           ?>
-
-
-
-
-
-                          <?php
-                          /*
-                          $QuestionThree = $db->query("SELECT * FROM questions;"); // getting everything from questions
-                           $o = 0;
-                           $currentQ = "";
-                           foreach ($QuestionThree as $qoo)
-                           { ?>
-                             <div id="<?= print $quu["question"]?>">
-                               <h1><?= print $quu["question"]?></h1>
-                               <ul>
-                              <?php
-                              // we need to loop throught each question then inside loop through each
-                              // comment attached to that particular question
-                              $comments = $db->query("SELECT * FROM scores"); // getting everything from questions
-
-                              foreach($comments as $com)
-                              { ?>
-                                <li><?= print $com["comment"]?></li>';
-                                <?php
-                              }
-                            '</ul>';
-                           }
-                           */
-                           ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                             <div id="section1">
                               <h1>Section 1</h1>
                               <p>Try to scroll this section and look at the navigation list while scrolling!</p>
