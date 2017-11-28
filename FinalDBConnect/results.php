@@ -52,11 +52,12 @@
         $avgscore = $db->query("SELECT AVG(answer) as qscores FROM answer where project_id = '".$a."' ");
           foreach($avgscore as $ascore) {
             $averages = $ascore["qscores"] * 20;
+            $avgTitle = $ascore["qscores"];
           } ?>
           <div class="progress">
             <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar"
             aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:<?= $averages ?>%">
-            <?= $row["title"] . "Average Score = " . $averages ?>
+            <?= $row["title"] . "Average Score = " . round($avgTitle,2) ?>
           </div>
         </div>
         <?php
@@ -106,13 +107,11 @@
                  for ($z = 0; $z<12; $z++){
 
                   $gettingScore = $db->query("SELECT AVG(answer) as avgScore FROM answer where project_id = '".$pos."' AND question_id='".$quess."'  ");
-
-                  // Get the average score, as avgScore from scores
-                  //where the proposal id is $pos (starts at 1 (in larger loop that goes up to proposal.count))
                   foreach ($gettingScore as $setScore) {
                     $getScore = $setScore["avgScore"];
                   }
-                  $gettingCount = $db->query("SELECT AVG(answer) as avgScore FROM answer where project_id = '".$pos."' AND question_id='".$quess."' "); // Get everything from scores
+                  $gettingCount = $db->query("SELECT AVG(answer) as avgScore FROM answer where project_id = '".$pos."' AND question_id='".$quess."' ");
+                  // Get Average answer as avgScore from answer table where the project id is the proposal number and the question id is question number
                     foreach ($gettingCount as $getCount) {
                       $score[$s] = $getScore;
                       $s = $s + 1;
@@ -121,11 +120,12 @@
                       $quess = str_pad ($quess, 3, '0', STR_PAD_LEFT);
                     }
                     ?>
-                    <script type="text/javascript"> // create a javascript array that is the same as the $score array
+                    <!-- Echo js values of php values for js page to use -->
+                    <script type="text/javascript">
                     var scores = <?php echo json_encode($score); ?>;
                     var val = <?php echo json_encode($pos); ?>;
                     </script>
-
+                    <!-- Radar Chart -->
                 <canvas id="radar-chart<?= $pos?>" width="800" height="400"></canvas>
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
                 <script  src="jScript.js"></script>
@@ -142,11 +142,8 @@
                 <p><?= $proposal["description"]?></p>
             <h2>View comments</h2>
             <!-- Trigger the modal with a button -->
-
             <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal<?=$pos?>">Comments</button>
-
             <!-- Modal -->
-
             <div class="modal fade" id="myModal<?=$pos?>" role="dialog">
               <div class="modal-dialog modal-lg">
                 <div class="modal-content">
