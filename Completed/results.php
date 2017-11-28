@@ -37,6 +37,11 @@
           $question[$q] = $getQuestion["question"];
           $q = $q + 1;
         }
+        $propnum = $db->query("SELECT Title FROM test"); // Getting the number of proposals in the database
+        $numNeeded = 0;
+        foreach ($propnum as $proo) {
+          $numNeeded = $numNeeded + 1;
+        }
 //------------------------------------------------------------------------------------------------------
         ?>
         <script type="text/javascript"> // create a javascript array that is the same as the $score array
@@ -51,11 +56,12 @@
         $avgscore = $db->query("SELECT AVG(score) as qscores FROM scores where proposalid = '".$a."' ");
           foreach($avgscore as $ascore) {
             $averages = $ascore["qscores"] * 20;
+            $avgTitle = $ascore["qscores"];
           } ?>
           <div class="progress">
             <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar"
             aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:<?= $averages ?>%">
-            <?= $row["Title"] . "Average Score = " . $averages ?>
+            <?= $row["Title"] . "Average Score = " . round($avgTitle,2) ?>
           </div>
         </div>
         <?php
@@ -64,7 +70,6 @@
       <p>Use this box to talk about what the graph above means
       </p>
       <br><br>
-
 
       <!--  start accordian box   -->
       <h4><small>RECENT POSTS</small></h4>
@@ -76,8 +81,7 @@
         $pos = 1; //
         $posAvg = 0; // average value
         //$t = 1;
-        $propnum = $db->query("SELECT count(Title) FROM test"); // Getting the number of proposals in the database
-        $quesNum = $db->query("SELECT count(question) FROM questions"); // Getting the number of questions in the database
+        //$quesNum = $db->query("SELECT count(question) FROM questions"); // Getting the number of questions in the database
         foreach ($proposalArray as $proposal) {
           //$k = $avgscore;
           ?>
@@ -113,11 +117,14 @@
                       $score[$s] = $getScore;
                       //print $score[$s];
                       $s = $s + 1;
-                    } ?>
+                    }
+                    //$numberNeeded = count($propnum);
+                    ?>
 
                     <script type="text/javascript"> // create a javascript array that is the same as the $score array
                     var scores = <?php echo json_encode($score); ?>;
                     var val = <?php echo json_encode($pos); ?>;
+                    var num = <?php echo json_encode($numNeeded); ?>;
                     </script>
 
                 <canvas id="radar-chart<?= $pos?>" width="800" height="400"></canvas>
