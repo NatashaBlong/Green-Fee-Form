@@ -133,13 +133,13 @@
               <hr>
               <!-- info box above table -->
                 <h5>Title: </h6>
-                <p>  <?= $proposal["Title"] ?>       </p>
+                <p><?= $proposal["title"]?></p>
                 <h5>Proposer: </h6>
-                <p>    <?= $proposal["Proposer"] ?>      </p>
+                <p><?= $proposal["contact_name"]?></p>
                 <h5>Budget: </h6>
-                <p>    <?= $proposal["budget"] ?>      </p>
+                <p><?= $proposal["amount"]?></p>
                 <h5>Description: </h6>
-                <p>   <?= $proposal["description"] ?>        </p>
+                <p><?= $proposal["description"]?></p>
             <h2>View comments</h2>
             <!-- Trigger the modal with a button -->
 
