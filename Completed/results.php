@@ -131,13 +131,15 @@
                 <script  src="jScript.js"></script>
                 <br>
               <hr>
-              <?php
-              $Question = $db->query("SELECT * FROM questions;"); // getting everything from questions
-              foreach ($Question as $q) // iterating through questions
-              {
-                print ("Question = " . $q["question"] . "<br>"); // printing questions
-              }
-              ?>
+              <!-- info box above table -->
+                <h5>Title: </h6>
+                <p>  <?= $proposal["Title"] ?>       </p>
+                <h5>Proposer: </h6>
+                <p>    <?= $proposal["Proposer"] ?>      </p>
+                <h5>Budget: </h6>
+                <p>    <?= $proposal["budget"] ?>      </p>
+                <h5>Description: </h6>
+                <p>   <?= $proposal["description"] ?>        </p>
             <h2>View comments</h2>
             <!-- Trigger the modal with a button -->
 
