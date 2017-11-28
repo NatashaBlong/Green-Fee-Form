@@ -14,7 +14,7 @@
   <!--  Top header   -->
   <div class="jumbotron">
     <div class="container text-center">
-      <h1>Student Green Fee Review - OLD DATA</h1>
+      <h1>Student Green Fee Review</h1>
       <p>put something here</p>
     </div>
   </div>

@@ -15,6 +15,9 @@
   <div class="jumbotron">
     <div class="container text-center">
       <h1>Student Green Fee Review</h1>
+      <div>
+        <img src="Logo.png" alt="Gree Fee Logo">
+      </div>
       <p>put something here</p>
     </div>
   </div>
