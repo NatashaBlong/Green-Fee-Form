@@ -160,24 +160,16 @@
                         <div class="row">
                           <nav class="col-sm-3" id="myScrollspy">
                             <ul class="nav nav-pills nav-stacked">
-                              <?php
-                              $QuestionTwo = $db->query("SELECT * FROM questions;"); // getting everything from questions
-                               $le = 0;
-                               foreach ($QuestionTwo as $quu)
-                               {
-                                if ($le == 0)
-                                { ?>
-                                  <li class="active"><a href="#<?=$quu["question"]?>"><?=$quu["question"]?></a></li>
-                                  <?php
-                                }
-                                else
-                                { ?>
-                                  <li><a href="#<?=$quu["question"]?>"><?=$quu["question"]?></a></li>
-                                  <?php
-                                }
-                                  $le = $le + 1;
-                               }
-                               ?>
+                              <li class="active"><a href="#section1">Section 1</a></li>
+                              <li><a href="#section2">Section 2</a></li>
+                              <li><a href="#section3">Section 3</a></li>
+                              <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Section 4 <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                  <li><a href="#section41">Section 4-1</a></li>
+                                  <li><a href="#section42">Section 4-2</a></li>
+                                </ul>
+                              </li>
                             </ul>
                           </nav>
                           <div class="col-sm-9">

@@ -33,7 +33,7 @@
 //-------------------------Getting Questions to use later----------------------------------------------
         $gettingQuestion = $db->query("SELECT * FROM question;"); // Get everything from scores
         $q = 0;
-        
+
         foreach ($gettingQuestion as $getQuestion) {
           $question[$q] = $getQuestion["title"];
           $q = $q + 1;
@@ -80,10 +80,8 @@
         $propnum = $db->query("SELECT count(title) FROM project"); // Getting the number of proposals in the database
         $quesNum = $db->query("SELECT count(title) FROM question"); // Getting the number of questions in the database
         foreach ($proposalArray as $proposal) {
-        
         $quess=1;
         $quess = str_pad ($quess, 3, '0', STR_PAD_LEFT);
-        
           //$k = $avgscore;
           ?>
           <div class="panel panel-default">
@@ -106,55 +104,46 @@
                  $score = []; // Array of average score for each question
                   $s = 0;
                  for ($z = 0; $z<12; $z++){
-                
+
                   $gettingScore = $db->query("SELECT AVG(answer) as avgScore FROM answer where project_id = '".$pos."' AND question_id='".$quess."'  ");
-                  
+
                   // Get the average score, as avgScore from scores
                   //where the proposal id is $pos (starts at 1 (in larger loop that goes up to proposal.count))
                   foreach ($gettingScore as $setScore) {
                     $getScore = $setScore["avgScore"];
-                    
-                 
-                  } 
-                
+                  }
                   $gettingCount = $db->query("SELECT AVG(answer) as avgScore FROM answer where project_id = '".$pos."' AND question_id='".$quess."' "); // Get everything from scores
                     foreach ($gettingCount as $getCount) {
                       $score[$s] = $getScore;
                       $s = $s + 1;
-                    } 
-                    ?>
-
-					<?php
-                  
-                   
-                  $quess = $quess + 1;
-                  $quess = str_pad ($quess, 3, '0', STR_PAD_LEFT);
-                  }
-                  
-                    
+                    }
+                      $quess = $quess + 1;
+                      $quess = str_pad ($quess, 3, '0', STR_PAD_LEFT);
+                    }
                     ?>
                     <script type="text/javascript"> // create a javascript array that is the same as the $score array
                     var scores = <?php echo json_encode($score); ?>;
                     var val = <?php echo json_encode($pos); ?>;
                     </script>
-					
 
                 <canvas id="radar-chart<?= $pos?>" width="800" height="400"></canvas>
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
                 <script  src="jScript.js"></script>
                 <br>
               <hr>
-              <?php
-              $Question = $db->query("SELECT * FROM question;"); // getting everything from questions
-              foreach ($Question as $q) // iterating through questions
-              {
-                print ("Question = " . $q["title"] . "<br>"); // printing questions
-              }
-              ?>
+              <!-- info box above table -->
+                <h5>Title: </h6>
+                <p>  <?= $proposal["Title"] ?>       </p>
+                <h5>Proposer: </h6>
+                <p>    <?= $proposal["Proposer"] ?>      </p>
+                <h5>Budget: </h6>
+                <p>    <?= $proposal["budget"] ?>      </p>
+                <h5>Description: </h6>
+                <p>   <?= $proposal["description"] ?>        </p>
             <h2>View comments</h2>
             <!-- Trigger the modal with a button -->
 
-            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal<?=$pos?>"  >Comments</button>
+            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal<?=$pos?>">Comments</button>
 
             <!-- Modal -->
 
@@ -172,39 +161,52 @@
                         <div class="row">
                           <nav class="col-sm-3" id="myScrollspy">
                             <ul class="nav nav-pills nav-stacked">
-                              <li class="active"><a href="#section1">Section 1</a></li>
-                              <li><a href="#section2">Section 2</a></li>
-                              <li><a href="#section3">Section 3</a></li>
-                              <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Section 4 <span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                  <li><a href="#section41">Section 4-1</a></li>
-                                  <li><a href="#section42">Section 4-2</a></li>
-                                </ul>
-                              </li>
+                              <?php
+                              $QuestionTwo = $db->query("SELECT * FROM question;"); // getting everything from questions
+                               $le = 0;
+                               foreach ($QuestionTwo as $qTwo)
+                               {
+                                if ($le == 0)
+                                { ?>
+                                  <li class="active"><a href="#<?=$qTwo["title"]?>"><?=$qTwo["title"]?></a></li>
+                                  <?php
+                                }
+                                else
+                                { ?>
+                                  <li><a href="#<?=$qTwo["title"]?>"><?=$qTwo["title"]?></a></li>
+                                  <?php
+                                }
+                                  $le = $le + 1;
+                               }
+                               ?>
                             </ul>
                           </nav>
-                          <div class="col-sm-9">
-                            <div id="section1">
-                              <h1>Section 1</h1>
-                              <p>Try to scroll this section and look at the navigation list while scrolling!</p>
-                            </div>
-                            <div id="section2">
-                              <h1>Section 2</h1>
-                              <p>Try to scroll this section and look at the navigation list while scrolling!
-                              </div>
-                              <div id="section3">
-                                <h1>Section 3</h1>
-                                <p>Try to scroll this section and look at the navigation list while scrolling!</p>
-                              </div>
-                              <div id="section41">
-                                <h1>Section 4-1</h1>
-                                <p>Try to scroll this section and look at the navigation list while scrolling!</p>
-                              </div>
-                              <div id="section42">
-                                <h1>Section 4-2</h1>
-                                <p>Try to scroll this section and look at the navigation list while scrolling!</p>
-                              </div>
+                          <div class="col-sm-6">
+                            <?php
+                            $comNum = 1;
+                            $comNum = str_pad ($comNum, 3, '0', STR_PAD_LEFT);
+                            $QuestionThree = $db->query("SELECT * FROM question;"); // getting everything from questions
+                             foreach ($QuestionThree as $qThree)
+                             { ?>
+                               <fieldset>
+                               <div id="<?=$qoo["title"]?>">
+                                 <h4><?=$qThree["title"]?></h4> <?php
+                                 $allComments = $db->query("SELECT * FROM answer WHERE project_id = '".$pos."' AND question_id = '".$comNum."'"); ?>
+                                 <p>
+                                 <ul> <?php
+                                 foreach ($allComments as $allCom)
+                                 { ?>
+                                   <li><?=$allCom["comment"]?></li> <?php
+                                 } ?>
+                                 </ul>
+                               </p>
+                               </div>
+                             </fieldset>
+                               <?php
+                               $comNum = $comNum + 1;
+                               $comNum = str_pad ($comNum, 3, '0', STR_PAD_LEFT);
+                             }
+                               ?>
                             </div>
                           </div>
                         </div>
@@ -224,9 +226,6 @@
         } ?>
           <br>
         <hr>
-
-
-
       </div>
     </div>
     <div class="col-sm-2 sidenav" class="fix">
