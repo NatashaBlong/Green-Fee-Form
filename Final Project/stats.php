@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-  <link rel="stylesheet" href="statStyle.css">
+  <link rel="stylesheet" href="statsStyle.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
@@ -46,7 +46,6 @@
 //------------------------------------------------------------------------------------------------------
         ?>
         <span id="jsanum" style="display: none;">
-
         		<?= $numNeeded ?>
         </span>
         <script type="text/javascript"> // create a javascript array that is the same as the $score array
@@ -81,17 +80,13 @@
       <div class="panel-group" id="accordion">
         <?php
         $proposalArray = $db->query("SELECT * FROM project;"); // getting everything from test
-        $pos = 1; //
+        $pos = 1; // value of proposal
         $posAvg = 0; // average value
-        //$t = 1;
         $propnum = $db->query("SELECT count(title) FROM project"); // Getting the number of proposals in the database
         $quesNum = $db->query("SELECT count(title) FROM question"); // Getting the number of questions in the database
         foreach ($proposalArray as $proposal) {
-
         $quess=1;
         $quess = str_pad ($quess, 3, '0', STR_PAD_LEFT);
-
-          //$k = $avgscore;
           ?>
           <div class="panel panel-default">
             <div class="panel-heading">
@@ -101,7 +96,7 @@
             </div>
             <?php if($pos == 1)
             {
-            print '<div id="collapse'. $pos .'" class="panel-collapse collapse in">';
+              print '<div id="collapse'. $pos .'" class="panel-collapse collapse in">';
             }
             else
             {
@@ -113,9 +108,7 @@
                  $score = []; // Array of average score for each question
                   $s = 0;
                  for ($z = 0; $z<12; $z++){
-
-                  $gettingScore = $db->query("SELECT AVG(answer) as avgScore FROM answer where project_id = '".$pos."' AND question_id='".$quess."'  ");
-
+                   $gettingScore = $db->query("SELECT AVG(answer) as avgScore FROM answer where project_id = '".$pos."' AND question_id='".$quess."'  ");
                   // Get the average score, as avgScore from scores
                   //where the proposal id is $pos (starts at 1 (in larger loop that goes up to proposal.count))
                   foreach ($gettingScore as $setScore) {
@@ -153,7 +146,6 @@
             <!-- Trigger the modal with a button -->
             <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal<?=$pos?>">Comments</button>
             <!-- Modal -->
-
             <div class="modal fade" id="myModal<?=$pos?>" role="dialog">
               <div class="modal-dialog modal-lg">
                 <div class="modal-content">
@@ -233,9 +225,6 @@
         } ?>
           <br>
         <hr>
-
-
-
       </div>
     </div>
     <div class="col-sm-2 sidenav" class="fix">
