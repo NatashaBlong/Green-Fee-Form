@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="statStyle.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
@@ -131,15 +132,13 @@
                 <script  src="jScript.js"></script>
                 <br>
               <hr>
-              <!-- info box above table -->
-                <h5>Title: </h6>
-                <p>  <?= $proposal["Title"] ?>       </p>
-                <h5>Proposer: </h6>
-                <p>    <?= $proposal["Proposer"] ?>      </p>
-                <h5>Budget: </h6>
-                <p>    <?= $proposal["budget"] ?>      </p>
-                <h5>Description: </h6>
-                <p>   <?= $proposal["description"] ?>        </p>
+              <?php
+              $Question = $db->query("SELECT * FROM questions;"); // getting everything from questions
+              foreach ($Question as $q) // iterating through questions
+              {
+                print ("Question = " . $q["question"] . "<br>"); // printing questions
+              }
+              ?>
             <h2>View comments</h2>
             <!-- Trigger the modal with a button -->
 
