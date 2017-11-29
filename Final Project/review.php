@@ -94,24 +94,34 @@
                 <div class="panel panel-default">
                   <div class="panel-heading">
                     <h4 class="panel-title">
-                      <a data-toggle="collapse" data-parent="#accordion" href="#collapse<?php print $pos?>"> <?php print $que["title"]?></a>
+                      <a data-toggle="collapse" data-parent="#accordion" href="#collapse<?php print $pos?>"><b><?php print $que["title"]?><b></a>
                     </h4>
                   </div>
                   <?php print '<div id="collapse'.$pos.'" class="panel-collapse collapse in">'?>
                     <div class="panel-body">
                       <div class="col-6" class="<?= $k ?>">
                         <div class="row">
+
                           <div class="col-xs-6">
-                            <?= $que["text"] ?> <br><br>
+                            <br><p> Here is where we would pull in the information inluded about this
+                                section from the proposer.</p>
+                            <textarea class="commentBox"name="<?=$j?>" rows="5" cols="50">Enter comments here...</textarea>
+                          </div>
+
+                          <div class="col-xs-6">
+                            <br><p><?= $que["text"]?></p><br>
                             <input type="range" min="1" max="5" value="3" class="slider" name="<?=  $i ?>">
                             <br>
                             <img src="num.png" alt="numbers" id="nums">
                             <br>
                           </div>
-                          <div class="col-xs-6">
-                            Comments:
-                            <textarea class="commentBox"name="<?= $j ?>" rows="5" cols="50" ></textarea>
-                          </div>
+
+
+
+
+
+
+
                         </div>
                         <?php print '<button type="button" id="button'.$pos.'" class="'.$pos.'" class="btn btn-success" onclick="closeAcord()">Next Question</button>';?>
                       </div>
