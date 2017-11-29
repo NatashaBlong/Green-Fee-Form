@@ -50,7 +50,11 @@ li
     border: 4px solid #7CA341;
     border-width: 0px 0 2px 2px;
 }
-
+.btn, .btn-info, .btn-lg
+{
+  background-color: #7CA344;
+  border-color: #7CA344;
+}
 @keyframes bounce {
   0%,
   100%,
