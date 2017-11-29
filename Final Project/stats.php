@@ -69,7 +69,7 @@
             $avgTitle = $ascore["qscores"];
           } ?>
           <div class="progress">
-            <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar"
+            <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar"
             aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:<?= $averages ?>%">
             <?= $row["title"] . "Average Score = " . round($avgTitle,2) ?>
           </div>

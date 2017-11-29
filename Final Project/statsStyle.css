@@ -22,7 +22,7 @@ li
 }
 .scroll-down {
   position: absolute;
-  bottom: 30px;
+
   left: 50%;
   margin-left: -16px;
   display: block;
@@ -72,3 +72,4 @@ li
     transform: translateY(-5px);
   }
 }
+
