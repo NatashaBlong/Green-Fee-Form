@@ -143,8 +143,6 @@
                 <p><?= $proposal["contact_name"]?></p>
                 <h5>Budget: </h6>
                 <p><?= $proposal["amount"]?></p>
-                <h5>Description: </h6>
-                <p><?= $proposal["description"]?></p>
             <h2>View comments</h2>
             <!-- Trigger the modal with a button -->
             <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal<?=$pos?>">Comments</button>
