@@ -15,18 +15,18 @@
 </head>
 <body>
   <!--  Top header   -->
+
   <div class="jumbotron">
     <div class="container text-center">
     <img class="logo" src="GreenFee.png" width="200px">
       <h1>Review Form</h1>
       <p>Fill out the following questions based on proposal.</p>
     </div>
-
     <section>
       <a href="#" class="scroll-down" address="true"></a>
     </section>
-
   </div>
+
   <!--  side bar   -->
   <section class="ok">
   <div class="container-fluid">
@@ -116,16 +116,16 @@
               } ?>
             </div>
           <?php  } ?>
-        
+
           <!--  end accordian box   -->
           <button type="submit">Submit Review</button>
         </form>
         </div>
         <div class="col-sm-2 sidenav" class="fix">
         </div>
-      </div>   
+      </div>
     </div>
-    </section> 
+    </section>
     <footer class="container-fluid">
       <p>Copyright Green Fee</p>
     </footer>
