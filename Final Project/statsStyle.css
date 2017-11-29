@@ -60,7 +60,11 @@ li
   background-color: #7CA344;
   border-color: #7CA344;
 }
-.active
+a
+{
+    color: black;
+}
+a:hover
 {
   color: #7CA344;
 }
