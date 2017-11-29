@@ -11,7 +11,6 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="jScript.js"></script>
-  <script src="scroll.js"></script>
 </head>
 <body>
   <!--  Top header   -->
@@ -22,11 +21,7 @@
       <h1>Review Form</h1>
       <p>Fill out the following questions based on proposal.</p>
     </div>
-    <section>
-      <a href="#" class="scroll-down" address="true"></a>
-    </section>
   </div>
-
   <!--  side bar   -->
   <section class="ok">
   <div class="container-fluid">
@@ -116,7 +111,6 @@
               } ?>
             </div>
           <?php  } ?>
-
           <!--  end accordian box   -->
           <button type="submit">Submit Review</button>
         </form>
