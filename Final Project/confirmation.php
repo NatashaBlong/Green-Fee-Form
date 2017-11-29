@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>test result page</title>
+  <title>Review Confirmation</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="reviewStyle.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="icon" type="image/ico" href="GreenFeeIcon.ico">
 </head>
 <body>
   <!--  Top header   -->
@@ -42,7 +43,7 @@
 					$var=$var+1;;
 					}
 				?>
-				<p>Your response for the proposals have been saved,
+				<p class="text-center">Your response for the proposals have been saved,
 				thank you for taking the time to review for Green Fee.</p>
 				<img src="checkmark.gif" alt="checkmark" width="700px" id="check" class="container text-center">
       </div>
