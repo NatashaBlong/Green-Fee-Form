@@ -64,7 +64,7 @@ a
 {
     color: black;
 }
-a:hover
+a:hover, a:active, a:after
 {
   color: #7CA344;
 }
