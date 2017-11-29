@@ -21,12 +21,9 @@
       </div>
       <p>Results regarding green fee proposals.</p>
     </div>
-
     <section>
       <a href="#" class="scroll-down" address="true"></a>
     </section>
-  
-
   </div>
   <!--  side bar   -->
   <section class="ok">
@@ -36,7 +33,6 @@
       </div>
       <!--  first stats box   -->
       <div class="col-sm-8">
-        <h4><small>Data</small></h4>
         <hr>
         <h2>Proposal Average Scores</h2>
         <?php
@@ -81,11 +77,8 @@
         <?php
         $a++;
       } ?>
-      <p>Use this box to talk about what the graph above means
-      </p>
       <br><br>
       <!--  start accordian box   -->
-      <h4><small>RECENT POSTS</small></h4>
       <hr>
       <h2>Ranked Proposals</h2>
       <div class="panel-group" id="accordion">
@@ -145,15 +138,14 @@
                 <br>
               <hr>
               <!-- info box above table -->
-                <h5>Title: </h6>
-                <p><?= $proposal["title"]?></p>
-                <h5>Proposer: </h6>
-                <p><?= $proposal["contact_name"]?></p>
-                <h5>Budget: </h6>
-                <p><?= $proposal["amount"]?></p>
-            <h2>View comments</h2>
+              <div class="text-center">
+                <p><b>Proposer:</b> <?= $proposal["contact_name"]?> &nbsp;&nbsp;-&nbsp;&nbsp; <b>Title:</b> <?= $proposal["title"]?> &nbsp;&nbsp;-&nbsp;&nbsp; <b>Budget:</b> <?= $proposal["amount"]?></p>
+              </div>
+            <h2 class="text-center">View comments</h2>
             <!-- Trigger the modal with a button -->
-            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal<?=$pos?>">Comments</button>
+            <div class="text-center">
+              <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal<?=$pos?>">Comments</button>
+            </div>
             <!-- Modal -->
             <div class="modal fade" id="myModal<?=$pos?>" role="dialog">
               <div class="modal-dialog modal-lg">
@@ -242,7 +234,7 @@
 </div>
 </section>
 <footer class="container-fluid">
-  <p>Footer Text</p>
+  <p class="text-center">Copyright Green Fee</p>
 </footer>
 </body>
 </html>

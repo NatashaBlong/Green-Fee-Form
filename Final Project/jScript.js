@@ -8,21 +8,15 @@ new Chart(document.getElementById("radar-chart" + val), {
         {
           label: "Average Question Score",
           fill: true,
-          backgroundColor: "rgba(255,99,132,0.2)",
-          borderColor: "rgba(255,99,132,1)",
+          backgroundColor: "rgba(125,165,68,0.5)",
+          borderColor: "#7DA544",
           pointBorderColor: "#fff",
-          pointBackgroundColor: "rgba(255,99,132,1)",
+          pointBackgroundColor: "#7DA544",
           pointBorderColor: "#fff",
           data: scores
         }
       ]
     },
-    options: {
-      title: {
-        display: true,
-        text: 'Distribution in % of world population'
-      }
-    }
 });
 }
 // --------- Review Questionair -----------
