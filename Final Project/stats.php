@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>test result page</title>
+  <title>Proposal Review Stats</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -20,10 +20,10 @@
       <div>
       </div>
       <p>Results regarding green fee proposals.</p>
+      <section>
+        <a href="#" class="scroll-down" address="true"></a>
+      </section>
     </div>
-    <section>
-      <a href="#" class="scroll-down" address="true"></a>
-    </section>
   </div>
   <!--  side bar   -->
   <section class="ok">
