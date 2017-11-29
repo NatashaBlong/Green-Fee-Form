@@ -12,15 +12,22 @@
   <script src="jScript.js"></script>
 </head>
 <body>
+
+
+
+
+
   <!--  Top header   -->
   <div class="jumbotron">
     <div class="container text-center">
     <img class="logo" src="GreenFee.png" width="200px">
-      <h1>Review Form</h1>
-      <p>Fill out the following questions based on proposal.</p>
-    </div>
-  </div>
-  <!--  side bar   -->
+	                  <?php
+                  $db = new PDO("mysql:dbname=finalreview", "root", "");
+				  
+				  ?>
+				  
+	
+				   <!--  side bar   -->
   <section class="ok">
   <div class="container-fluid">
     <div class="row content">
@@ -29,8 +36,9 @@
       <!--  questions to enter quiz   -->
       <div class="col-sm-8">
         <?php
-        if (!isset($_POST["name"])) { ?>
-        <body onload="document.getElementById('id01').style.display='block'">
+        if (!isset($_POST["name"])) { 	
+		?>
+        <body onload="document.getElementById('id01').style.display='block'">		  
         <?php } ?>
           <div id="id01" class="modal">
             <form class="modal-content animate" action="review.php" method="POST">
@@ -43,16 +51,20 @@
                 <label><b>Select a Proposal</b></label>
                 <select name="output" class="form-control" id="sell">
                   <?php
-                  $db = new PDO("mysql:dbname=finalreview", "root", "");
+       
                   $lines = $db->query("SELECT title FROM project");
                   $i = 1;
+				                      ?>
+				
+					<?php
                   foreach ($lines as $line) {
                     ?>
                     <option value="<?= $line["title"] ?>"> <?= $line["title"] ?> </option>
-                    <?php
+					<?php
                     $i = $i + 1;
                   }
                   ?>
+				   
                 </select><br>
                 <button type="submit">Proceed to Proposal Review</button><br>
               </div>
@@ -61,6 +73,19 @@
             </form>
           </div>
           <!--  end create arrays   -->
+				  
+
+      <h1>Review Form</h1>
+<?php 
+ if(isset($_POST["output"])){ 	$x = $_POST["output"];
+?>
+    <p>Fill out the following questions based on the proposal  "<?= $x ?>"  </p>
+<?php
+ }
+?>
+    </div>
+  </div>
+ 
           <!--  start accordian box   -->
           <form action="confirmation.php" method="POST">
           <?php
