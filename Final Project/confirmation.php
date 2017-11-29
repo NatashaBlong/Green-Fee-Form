@@ -52,7 +52,7 @@
       </div>
     </div>
     <footer class="container-fluid">
-      <p>Copyright Green Fee</p>
+      <p class="text-center">Copyright Green Fee</p>
     </footer>
   </body>
   </html>
