@@ -50,10 +50,19 @@ li
     border: 4px solid #7CA341;
     border-width: 0px 0 2px 2px;
 }
-.btn, .btn-info, .btn-lg
+.btn, .btn-info, .btn-lg, .progress-bar-success
 {
   background-color: #7CA344;
   border-color: #7CA344;
+}
+.btn:hover, .btn-info:hover, .btn-lg:hover
+{
+  background-color: #7CA344;
+  border-color: #7CA344;
+}
+.active
+{
+  color: #7CA344;
 }
 @keyframes bounce {
   0%,
@@ -76,4 +85,3 @@ li
     transform: translateY(-5px);
   }
 }
-
