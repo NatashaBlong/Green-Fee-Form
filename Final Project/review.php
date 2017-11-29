@@ -7,14 +7,12 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
   <link rel="stylesheet" href="reviewStyle.css">
-  <link rel="stylesheet" href="statsStyle.css"
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="jScript.js"></script>
 </head>
 <body>
   <!--  Top header   -->
-
   <div class="jumbotron">
     <div class="container text-center">
     <img class="logo" src="GreenFee.png" width="200px">
@@ -119,7 +117,6 @@
         </div>
       </div>
     </div>
-    </section>
     <footer class="container-fluid">
       <p>Copyright Green Fee</p>
     </footer>
