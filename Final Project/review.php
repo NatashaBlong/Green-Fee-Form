@@ -14,7 +14,22 @@
   <script src="scroll.js"></script>
 </head>
 <body>
-<div class="container-fluid">
+  <!--  Top header   -->
+  <div class="jumbotron">
+    <div class="container text-center">
+    <img class="logo" src="GreenFee.png" width="200px">
+      <h1>Review Form</h1>
+      <p>Fill out the following questions based on proposal.</p>
+    </div>
+
+    <section>
+      <a href="#" class="scroll-down" address="true"></a>
+    </section>
+
+  </div>
+  <!--  side bar   -->
+  <section class="ok">
+  <div class="container-fluid">
     <div class="row content">
       <div class="col-sm-2 sidenav" class="sidebars">
       </div>
@@ -52,22 +67,6 @@
               </div>
             </form>
           </div>
-  <!--  Top header   -->
-  <div class="jumbotron">
-    <div class="container text-center">
-    <img class="logo" src="GreenFee.png" width="200px">
-      <h1>Review Form</h1>
-      <p>Fill out the following questions based on proposal.</p>
-    </div>
-
-    <section>
-      <a href="#" class="scroll-down" address="true"></a>
-    </section>
-
-  </div>
-  <!--  side bar   -->
-  <section class="ok">
-
           <!--  end create arrays   -->
           <!--  start accordian box   -->
           <form action="confirmation.php" method="POST">
@@ -101,7 +100,7 @@
                           </div>
                           <div class="col-xs-6">
                             Comments:
-                            <textarea name="<?= $j ?>" id="boxes" rows="5" cols="50"></textarea>
+                            <textarea name="<?= $j ?>" rows="5" cols="50"></textarea>
                           </div>
                         </div>
                         <?php print '<button type="button" id="button'.$pos.'" class="'.$pos.'" class="btn btn-success" onclick="closeAcord()">Next Question</button>';?>
@@ -127,7 +126,6 @@
       </div>   
     </div>
     </section> 
-
     <footer class="container-fluid">
       <p>Copyright Green Fee</p>
     </footer>
