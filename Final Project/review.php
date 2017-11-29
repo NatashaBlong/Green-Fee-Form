@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>test review page</title>
+  <title>Proposal Review</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -10,23 +10,16 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="jScript.js"></script>
+  <link rel="icon" type="image/ico" href="GreenFeeIcon.ico">
 </head>
 <body>
-
-
-
-
-
   <!--  Top header   -->
   <div class="jumbotron">
     <div class="container text-center">
     <img class="logo" src="GreenFee.png" width="200px">
 	                  <?php
                   $db = new PDO("mysql:dbname=finalreview", "root", "");
-				  
 				  ?>
-				  
-	
 				   <!--  side bar   -->
   <section class="ok">
   <div class="container-fluid">
@@ -36,9 +29,9 @@
       <!--  questions to enter quiz   -->
       <div class="col-sm-8">
         <?php
-        if (!isset($_POST["name"])) { 	
+        if (!isset($_POST["name"])) {
 		?>
-        <body onload="document.getElementById('id01').style.display='block'">		  
+        <body onload="document.getElementById('id01').style.display='block'">
         <?php } ?>
           <div id="id01" class="modal">
             <form class="modal-content animate" action="review.php" method="POST">
@@ -51,11 +44,11 @@
                 <label><b>Select a Proposal</b></label>
                 <select name="output" class="form-control" id="sell">
                   <?php
-       
+
                   $lines = $db->query("SELECT title FROM project");
                   $i = 1;
 				                      ?>
-				
+
 					<?php
                   foreach ($lines as $line) {
                     ?>
@@ -64,7 +57,7 @@
                     $i = $i + 1;
                   }
                   ?>
-				   
+
                 </select><br>
                 <button type="submit">Proceed to Proposal Review</button><br>
               </div>
@@ -73,10 +66,10 @@
             </form>
           </div>
           <!--  end create arrays   -->
-				  
+
 
       <h1>Review Form</h1>
-<?php 
+<?php
  if(isset($_POST["output"])){ 	$x = $_POST["output"];
 ?>
     <p>Fill out the following questions based on the proposal  "<?= $x ?>"  </p>
@@ -85,7 +78,6 @@
 ?>
     </div>
   </div>
- 
           <!--  start accordian box   -->
           <form action="confirmation.php" method="POST">
           <?php
@@ -143,7 +135,7 @@
       </div>
     </div>
     <footer class="container-fluid">
-      <p>Copyright Green Fee</p>
+      <p class="text-center">Copyright Green Fee</p>
     </footer>
   </body>
   </html>
