@@ -101,7 +101,7 @@
                           </div>
                           <div class="col-xs-6">
                             Comments:
-                            <textarea name="<?= $j ?>" rows="5" cols="50"></textarea>
+                            <textarea name="<?= $j ?>" id="boxes" rows="5" cols="50"></textarea>
                           </div>
                         </div>
                         <?php print '<button type="button" id="button'.$pos.'" class="'.$pos.'" class="btn btn-success" onclick="closeAcord()">Next Question</button>';?>
