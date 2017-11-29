@@ -40,7 +40,7 @@
 				    $lines = $db->query("INSERT INTO `answer` (`user_id`,`question_id`,`project_id`,`answer`,`comment`) VALUES ('00000','".$num."', '2','".$x."','".$y."');");
 					$c=$c+1;
 					$d=$d+1;
-					$var=$var+1;;
+					$var=$var+1;
 					}
 				?>
 				<p class="text-center">Your response for the proposals have been saved,
