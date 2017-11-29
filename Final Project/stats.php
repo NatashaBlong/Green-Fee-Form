@@ -9,19 +9,27 @@
   <link rel="stylesheet" href="statsStyle.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="scroll.js"></script>
 </head>
 <body>
   <!--  Top header   -->
   <div class="jumbotron">
     <div class="container text-center">
-      <h1>Student Green Fee Review</h1>
+      <img src="GreenFee.png" alt="green fee logo" width="200px">
+      <h1>Review Results</h1>
       <div>
-        <img src="Logo.png" alt="Gree Fee Logo">
       </div>
-      <p>put something here</p>
+      <p>Results regarding green fee proposals.</p>
     </div>
+
+    <section>
+      <a href="#" class="scroll-down" address="true"></a>
+    </section>
+  
+
   </div>
   <!--  side bar   -->
+  <section class="ok">
   <div class="container-fluid">
     <div class="row content">
       <div class="col-sm-2 sidenav" class="sidebars">
@@ -234,6 +242,7 @@
     </div>
   </div>
 </div>
+</section>
 <footer class="container-fluid">
   <p>Footer Text</p>
 </footer>

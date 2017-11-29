@@ -1,26 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>test result page</title>
+  <title>test review page</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
   <link rel="stylesheet" href="reviewStyle.css">
+  <link rel="stylesheet" href="statsStyle.css"
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="jScript.js"></script>
+  <script src="scroll.js"></script>
 </head>
 <body>
-  <!--  Top header   -->
-  <div class="jumbotron">
-    <div class="container text-center">
-      <h1>Student Green Fee Review</h1>
-      <p>put something here</p>
-    </div>
-  </div>
-  <!--  side bar   -->
-  <div class="container-fluid">
+<div class="container-fluid">
     <div class="row content">
       <div class="col-sm-2 sidenav" class="sidebars">
       </div>
@@ -58,6 +52,22 @@
               </div>
             </form>
           </div>
+  <!--  Top header   -->
+  <div class="jumbotron">
+    <div class="container text-center">
+    <img class="logo" src="GreenFee.png" width="200px">
+      <h1>Review Form</h1>
+      <p>Fill out the following questions based on proposal.</p>
+    </div>
+
+    <section>
+      <a href="#" class="scroll-down" address="true"></a>
+    </section>
+
+  </div>
+  <!--  side bar   -->
+  <section class="ok">
+
           <!--  end create arrays   -->
           <!--  start accordian box   -->
           <form action="confirmation.php" method="POST">
@@ -107,14 +117,17 @@
               } ?>
             </div>
           <?php  } ?>
+        
           <!--  end accordian box   -->
           <button type="submit">Submit Review</button>
         </form>
         </div>
         <div class="col-sm-2 sidenav" class="fix">
         </div>
-      </div>
+      </div>   
     </div>
+    </section> 
+
     <footer class="container-fluid">
       <p>Copyright Green Fee</p>
     </footer>
