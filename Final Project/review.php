@@ -101,13 +101,11 @@
                     <div class="panel-body">
                       <div class="col-6" class="<?= $k ?>">
                         <div class="row">
-
                           <div class="col-xs-6">
                             <br><p> Here is where we would pull in the information inluded about this
-                                section from the proposer.</p>
+                                section from the proposer.</p><br>
                             <textarea class="commentBox"name="<?=$j?>" rows="5" cols="50">Enter comments here...</textarea>
                           </div>
-
                           <div class="col-xs-6">
                             <br><p><?= $que["text"]?></p><br>
                             <input type="range" min="1" max="5" value="3" class="slider" name="<?=  $i ?>">
@@ -115,13 +113,6 @@
                             <img src="num.png" alt="numbers" id="nums">
                             <br>
                           </div>
-
-
-
-
-
-
-
                         </div>
                         <?php print '<button type="button" id="button'.$pos.'" class="'.$pos.'" class="btn btn-success" onclick="closeAcord()">Next Question</button>';?>
                       </div>
