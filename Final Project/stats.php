@@ -169,7 +169,7 @@
                                {
                                 if ($le == 0)
                                 { ?>
-                                  <li class="active"><a href="#<?=$qTwo["title"]?>"><?=$qTwo["title"]?></a></li>
+                                  <li><a href="#<?=$qTwo["title"]?>"><?=$qTwo["title"]?></a></li>
                                   <?php
                                 }
                                 else
@@ -235,7 +235,7 @@
 </div>
 </section>
 <footer class="container-fluid">
-  <p class="text-center">Copyright Green Fee</p>
+  <p class="text-center">Copyright © Green Fee</p>
 </footer>
 </body>
 </html>
