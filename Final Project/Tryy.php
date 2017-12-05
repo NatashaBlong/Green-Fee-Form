@@ -160,17 +160,13 @@
                       <!-- Scrollspy -->
                       <div class="container">
                      <div class="row">
-<<<<<<< HEAD
-
-                          <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-                          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-                          <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" />
-                          <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+                       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+                       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+                       <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" />
+                       <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" />
                           <div id = "mynavbar">
                           <nav id="mynav" class="navbar navbar-inverse navbar-static-top custom-navbar" role="navigation">
-=======
                           <nav class="navbar navbar-inverse navbar-static-top custom-navbar" role="navigation">
->>>>>>> parent of 2dc6854... gfhg
                             <div class="container-fluid">
                               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1"> <span class="sr-only">Toggle navigation</span>
                                 <span class="icon-bar"></span>
@@ -210,7 +206,6 @@
                                   </div>
                             <!--/.container -->
                           </nav>
-
                           <?php
                           $comNum = 1;
                           $comNum = str_pad ($comNum, 3, '0', STR_PAD_LEFT);
@@ -268,7 +263,3 @@
 </footer>
 </body>
 </html>
-
-
-
-
