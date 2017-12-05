@@ -45,7 +45,7 @@
 				?>
 				<p class="text-center">Your response for the proposals have been saved,
 				thank you for taking the time to review for Green Fee.</p>
-				<img src="checkmark.gif" alt="checkmark" width="700px" id="check" class="container text-center">
+				<img src="logoanimation.gif" alt="checkmark" width="700px" id="check" class="container text-center">
       </div>
         <div class="col-sm-2 sidenav" class="fix">
         </div>

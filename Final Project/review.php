@@ -47,13 +47,13 @@
 
                   $lines = $db->query("SELECT title FROM project");
                   $i = 1;
-				                      ?>
+				          ?>
 
-					<?php
+					                         <?php
                   foreach ($lines as $line) {
                     ?>
                     <option value="<?= $line["title"] ?>"> <?= $line["title"] ?> </option>
-					<?php
+					               <?php
                     $i = $i + 1;
                   }
                   ?>
@@ -104,7 +104,7 @@
                           <div class="col-xs-6">
                             <br><p> Here is where we would pull in the information inluded about this
                                 section from the proposer.</p><br>
-                            <textarea class="commentBox"name="<?=$j?>" rows="5" cols="50">Enter comments here...</textarea>
+                            <textarea class="commentBox" name="<?=$j?>" rows="5" cols="50" placeholder="Enter comments here..."></textarea>
                           </div>
                           <div class="col-xs-6">
                             <br><p><?= $que["text"]?></p><br>
