@@ -185,16 +185,12 @@
                                    $le = 0;
                                    foreach ($QuestionTwo as $qTwo)
                                    {
-                                    if ($le == 0)
-                                    { ?>
-                                      <li><a class="active" href="#<?=$qTwo["title"]?>"><?=$qTwo["title"]?></a></li>
-                                      <?php
-                                    }
-                                    else
-                                    { ?>
-                                      <li><a href="#<?=$qTwo["title"]?>"><?=$qTwo["title"]?></a></li>
-                                      <?php
-                                    }
+                                        if ($le == 0) { ?>
+                                          <li ><a class="active" href="#<?=$qTwo["title"]?>"><?=$qTwo["title"]?></a></li> <?php
+                                        }
+                                        else { ?>
+                                          <li><a href="#<?=$qTwo["title"]?>"><?=$qTwo["title"]?></a></li> <?php
+                                        }
                                       $le = $le + 1;
                                    }
                                    ?>
@@ -206,12 +202,19 @@
                           </nav>
                           <?php
                           $comNum = 1;
+                          $colorPicker = 0;
                           $comNum = str_pad ($comNum, 3, '0', STR_PAD_LEFT);
                           $QuestionThree = $db->query("SELECT * FROM question;"); // getting everything from questions
                            foreach ($QuestionThree as $qThree)
                            { ?>
-                             <fieldset>
-                             <div id="<?=$qoo["title"]?>" class="container-fluid" height="500px">
+                             <fieldset> <?php
+                               if ($colorPicker % 2 == 0) { ?>
+                             <div class="fixSize" style="background-color:#7CA341;" id="<?=$qoo["title"]?>" class="container-fluid"> <?php
+                             }
+                             else
+                             { ?>
+                               <div class="fixSize" style="background-color:white;" id="<?=$qoo["title"]?>" class="container-fluid"><?php
+                             } ?>
                                <h4><?=$qThree["title"]?></h4> <?php
                                $allComments = $db->query("SELECT * FROM answer WHERE project_id = '".$pos."' AND question_id = '".$comNum."'"); ?>
                                <p>
@@ -229,6 +232,7 @@
                            </div>
                            </fieldset>
                            <?php
+                           $colorPicker = $colorPicker + 1;
                            }
                              ?>
                           </div>
