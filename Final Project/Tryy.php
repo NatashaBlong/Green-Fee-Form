@@ -158,19 +158,27 @@
                   <div class="modal-body">
                     <body data-spy="scroll" data-target="#myScrollspy" data-offset="20">
                       <!-- Scrollspy -->
-                  <!--    <div class="container">
-                      <div class="row"> -->
-                          <nav class="navbar navbar-inverse navbar-static-top custom-navbar" role="navigation">
+                      <div class="container">
+                     <div class="row">
+
+                          <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+                          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+                          <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" />
+                          <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+                          <div id = "mynavbar">
+                          <nav id="mynav" class="navbar navbar-inverse navbar-static-top custom-navbar" role="navigation">
                             <div class="container-fluid">
-                              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-<?=$pos?>"> <span class="sr-only">Toggle navigation</span>
+                              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1"> <span class="sr-only">Toggle navigation</span>
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                               </button>
-                              <div class="navbar-header"> <a class="navbar-brand" rel="home" href="#" title="Help">Comments</a>
+                              <div class="navbar-header"> <a class="navbar-brand" rel="home" href="#" title="Help">
+                                  Comments
+                                </a>
                               </div>
                               <button type="button" class="close" data-dismiss="modal">&times;</button>
-                              <div class="navbar-collapse collapse" id="navbar-collapse-<?=$pos?>">
+                              <div class="navbar-collapse collapse" id="navbar-collapse-1">
                                 <!-- Non-collapsing right-side icons -->
                                 <ul class="nav navbar-nav">
                                   <?php
@@ -178,12 +186,16 @@
                                    $le = 0;
                                    foreach ($QuestionTwo as $qTwo)
                                    {
-                                        if ($le == 0) { ?>
-                                          <li ><a class="active" href="#<?=$qTwo["title"]?>"><?=$qTwo["title"]?></a></li> <?php
-                                        }
-                                        else { ?>
-                                          <li><a href="#<?=$qTwo["title"]?>"><?=$qTwo["title"]?></a></li> <?php
-                                        }
+                                    if ($le == 0)
+                                    { ?>
+                                      <li><a class="active" href="#<?=$qTwo["title"]?>"><?=$qTwo["title"]?></a></li>
+                                      <?php
+                                    }
+                                    else
+                                    { ?>
+                                      <li><a href="#<?=$qTwo["title"]?>"><?=$qTwo["title"]?></a></li>
+                                      <?php
+                                    }
                                       $le = $le + 1;
                                    }
                                    ?>
@@ -191,23 +203,18 @@
                               </div>
                               <!--/.nav-collapse -->
                             </div>
+                                  </div>
                             <!--/.container -->
                           </nav>
+
                           <?php
                           $comNum = 1;
-                          $colorPicker = 0;
                           $comNum = str_pad ($comNum, 3, '0', STR_PAD_LEFT);
                           $QuestionThree = $db->query("SELECT * FROM question;"); // getting everything from questions
                            foreach ($QuestionThree as $qThree)
                            { ?>
-                             <fieldset> <?php
-                               if ($colorPicker % 2 == 0) { ?>
-                             <div class="fixSize" style="background-color:#7CA341;" id="<?=$qoo["title"]?>" class="container-fluid"> <?php
-                             }
-                             else
-                             { ?>
-                               <div class="fixSize" style="background-color:white;" id="<?=$qoo["title"]?>" class="container-fluid"><?php
-                             } ?>
+                             <fieldset>
+                             <div id="<?=$qoo["title"]?>" class="container-fluid" height="500px">
                                <h4><?=$qThree["title"]?></h4> <?php
                                $allComments = $db->query("SELECT * FROM answer WHERE project_id = '".$pos."' AND question_id = '".$comNum."'"); ?>
                                <p>
@@ -225,12 +232,11 @@
                            </div>
                            </fieldset>
                            <?php
-                           $colorPicker = $colorPicker + 1;
                            }
                              ?>
                           </div>
-                      <!--  </div>
-                      </div> -->
+                        </div>
+                      </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                       </div>
@@ -258,3 +264,7 @@
 </footer>
 </body>
 </html>
+
+
+
+
