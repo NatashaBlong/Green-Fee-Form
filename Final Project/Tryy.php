@@ -160,6 +160,7 @@
                       <!-- Scrollspy -->
                       <div class="container">
                      <div class="row">
+<<<<<<< HEAD
 
                           <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
                           <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
@@ -167,6 +168,9 @@
                           <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" />
                           <div id = "mynavbar">
                           <nav id="mynav" class="navbar navbar-inverse navbar-static-top custom-navbar" role="navigation">
+=======
+                          <nav class="navbar navbar-inverse navbar-static-top custom-navbar" role="navigation">
+>>>>>>> parent of 2dc6854... gfhg
                             <div class="container-fluid">
                               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1"> <span class="sr-only">Toggle navigation</span>
                                 <span class="icon-bar"></span>
