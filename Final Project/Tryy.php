@@ -158,21 +158,19 @@
                   <div class="modal-body">
                     <body data-spy="scroll" data-target="#myScrollspy" data-offset="20">
                       <!-- Scrollspy -->
-                      <div class="container">
-                     <div class="row">
+                  <!--    <div class="container">
+                      <div class="row"> -->
                           <nav class="navbar navbar-inverse navbar-static-top custom-navbar" role="navigation">
                             <div class="container-fluid">
-                              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1"> <span class="sr-only">Toggle navigation</span>
+                              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-<?=$pos?>"> <span class="sr-only">Toggle navigation</span>
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                               </button>
-                              <div class="navbar-header"> <a class="navbar-brand" rel="home" href="#" title="Help">
-                                  Comments
-                                </a>
+                              <div class="navbar-header"> <a class="navbar-brand" rel="home" href="#" title="Help">Comments</a>
                               </div>
                               <button type="button" class="close" data-dismiss="modal">&times;</button>
-                              <div class="navbar-collapse collapse" id="navbar-collapse-1">
+                              <div class="navbar-collapse collapse" id="navbar-collapse-<?=$pos?>">
                                 <!-- Non-collapsing right-side icons -->
                                 <ul class="nav navbar-nav">
                                   <?php
@@ -231,8 +229,8 @@
                            }
                              ?>
                           </div>
-                        </div>
-                      </div>
+                      <!--  </div>
+                      </div> -->
                       <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                       </div>
