@@ -2,10 +2,10 @@
 -- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Nov 28, 2017 at 02:27 AM
--- Server version: 10.1.26-MariaDB
--- PHP Version: 7.1.9
+-- Host: 127.0.0.1
+-- Generation Time: Dec 06, 2017 at 12:10 AM
+-- Server version: 10.1.28-MariaDB
+-- PHP Version: 7.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -72,38 +72,39 @@ CREATE TABLE `answer` (
   `question_id` varchar(45) NOT NULL,
   `project_id` varchar(45) NOT NULL,
   `answer` varchar(999) DEFAULT NULL,
-  `comment` varchar(999) DEFAULT NULL
+  `comment` varchar(999) DEFAULT NULL,
+  `type` int(9) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `answer`
 --
 
-INSERT INTO `answer` (`user_id`, `question_id`, `project_id`, `answer`, `comment`) VALUES
-('00000', '001', '1', '1', 'good'),
-('00000', '001', '2', '3', 'sab'),
-('00000', '002', '1', '5', 'good'),
-('00000', '002', '2', '3', 'gge'),
-('00000', '003', '1', '3', 'good'),
-('00000', '003', '2', '3', 'hi'),
-('00000', '004', '1', '2', 'good'),
-('00000', '004', '2', '3', 'gaegr'),
-('00000', '005', '1', '2', 'good'),
-('00000', '005', '2', '3', 'no'),
-('00000', '006', '1', '5', 'good'),
-('00000', '006', '2', '3', 'mg'),
-('00000', '007', '1', '3', 'good'),
-('00000', '007', '2', '3', 's'),
-('00000', '008', '1', '3', 'good'),
-('00000', '008', '2', '3', 'adf'),
-('00000', '009', '1', '3', 'good'),
-('00000', '009', '2', '3', 'oc'),
-('00000', '010', '1', '3', 'good'),
-('00000', '010', '2', '3', 'make'),
-('00000', '011', '1', '3', 'good'),
-('00000', '011', '2', '3', ''),
-('00000', '012', '1', '3', 'good'),
-('00000', '012', '2', '3', 'agsb');
+INSERT INTO `answer` (`user_id`, `question_id`, `project_id`, `answer`, `comment`, `type`) VALUES
+('00000', '001', '1', '1', 'good', 1),
+('00000', '002', '1', '5', 'nice', 1),
+('00000', '003', '1', '3', 'good', 1),
+('00000', '004', '1', '2', 'good', 1),
+('00000', '005', '1', '2', 'good', 1),
+('00000', '006', '1', '5', 'nice', 1),
+('00000', '007', '1', '3', 'good', 1),
+('00000', '008', '1', '4', 'good', 1),
+('00000', '009', '1', '3', 'good', 1),
+('00000', '010', '1', '5', 'nice', 1),
+('00000', '011', '1', '3', 'good', 1),
+('00000', '012', '1', '3', 'nice', 1),
+('00000', '001', '1', 'Allows students to help', NULL, 2),
+('00000', '002', '1', 'Helps WSU save money', NULL, 2),
+('00000', '003', '1', 'Nice Support', NULL, 2),
+('00000', '004', '1', 'About $100,000', NULL, 2),
+('00000', '005', '1', 'Response 5', NULL, 2),
+('00000', '006', '1', 'Response 6', NULL, 2),
+('00000', '007', '1', 'Response 7', NULL, 2),
+('00000', '008', '1', 'Response 8', NULL, 2),
+('00000', '009', '1', 'Response 9', NULL, 2),
+('00000', '010', '1', 'Response 10', NULL, 2),
+('00000', '011', '1', 'Response 11', NULL, 2),
+('00000', '012', '1', 'Response 12', NULL, 2);
 
 -- --------------------------------------------------------
 
@@ -226,7 +227,6 @@ ALTER TABLE `advisor`
 -- Indexes for table `answer`
 --
 ALTER TABLE `answer`
-  ADD PRIMARY KEY (`user_id`,`question_id`,`project_id`),
   ADD KEY `fk_answer_user1_idx` (`user_id`),
   ADD KEY `fk_answer_project1_idx` (`project_id`),
   ADD KEY `fk_answer_question1` (`question_id`);

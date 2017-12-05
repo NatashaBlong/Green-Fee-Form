@@ -37,7 +37,7 @@
 					    $num = str_pad($var, 3, "0", STR_PAD_LEFT);
 						$x = $_POST[$c];
 						$y = $_POST[$d];
-				    $lines = $db->query("INSERT INTO `answer` (`user_id`,`question_id`,`project_id`,`answer`,`comment`) VALUES ('00000','".$num."', '2','".$x."','".$y."');");
+				    $lines = $db->query("INSERT INTO `answer` (`user_id`,`question_id`,`project_id`,`answer`,`comment`, `type`) VALUES ('00000','".$num."', '2','".$x."','".$y."','1');");
 					$c=$c+1;
 					$d=$d+1;
 					$var=$var+1;

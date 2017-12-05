@@ -64,7 +64,7 @@
         $a = 1;
         $rows = $db->query("SELECT * FROM project;");
         foreach ($rows as $row) {
-        $avgscore = $db->query("SELECT AVG(answer) as qscores FROM answer where project_id = '".$a."' ");
+        $avgscore = $db->query("SELECT AVG(answer) as qscores FROM answer where project_id = '".$a."' and type = '1' ");
           foreach($avgscore as $ascore) {
             $averages = $ascore["qscores"] * 20;
             $avgTitle = $ascore["qscores"];
@@ -88,7 +88,7 @@
         $pos = 1; // value of proposal
         $posAvg = 0; // average value
         $propnum = $db->query("SELECT count(title) FROM project"); // Getting the number of proposals in the database
-        $quesNum = $db->query("SELECT count(title) FROM question"); // Getting the number of questions in the database
+        $quesNum = $db->query("SELECT count(title) FROM question "); // Getting the number of questions in the database
         foreach ($proposalArray as $proposal) {
         $quess=1;
         $quess = str_pad ($quess, 3, '0', STR_PAD_LEFT);
@@ -113,13 +113,13 @@
                  $score = []; // Array of average score for each question
                   $s = 0;
                  for ($z = 0; $z<12; $z++){
-                   $gettingScore = $db->query("SELECT AVG(answer) as avgScore FROM answer where project_id = '".$pos."' AND question_id='".$quess."'  ");
+                   $gettingScore = $db->query("SELECT AVG(answer) as avgScore FROM answer where project_id = '".$pos."' AND question_id='".$quess."' and type = '1' ");
                   // Get the average score, as avgScore from scores
                   //where the proposal id is $pos (starts at 1 (in larger loop that goes up to proposal.count))
                   foreach ($gettingScore as $setScore) {
                     $getScore = $setScore["avgScore"];
                   }
-                  $gettingCount = $db->query("SELECT AVG(answer) as avgScore FROM answer where project_id = '".$pos."' AND question_id='".$quess."' "); // Get everything from scores
+                  $gettingCount = $db->query("SELECT AVG(answer) as avgScore FROM answer where project_id = '".$pos."' AND question_id='".$quess."' and type='1' "); // Get everything from scores
                     foreach ($gettingCount as $getCount) {
                       $score[$s] = $getScore;
                       $s = $s + 1;
@@ -163,7 +163,7 @@
                           <nav class="col-sm-3" id="myScrollspy">
                             <ul class="nav nav-pills nav-stacked">
                               <?php
-                              $QuestionTwo = $db->query("SELECT * FROM question;"); // getting everything from questions
+                              $QuestionTwo = $db->query("SELECT * FROM question ;"); // getting everything from questions
                                $le = 0;
                                foreach ($QuestionTwo as $qTwo)
                                {
@@ -186,13 +186,13 @@
                             <?php
                             $comNum = 1;
                             $comNum = str_pad ($comNum, 3, '0', STR_PAD_LEFT);
-                            $QuestionThree = $db->query("SELECT * FROM question;"); // getting everything from questions
+                            $QuestionThree = $db->query("SELECT * FROM question ;"); // getting everything from questions
                              foreach ($QuestionThree as $qThree)
                              { ?>
                                <fieldset>
                                <div id="<?=$qoo["title"]?>">
                                  <h4><?=$qThree["title"]?></h4> <?php
-                                 $allComments = $db->query("SELECT * FROM answer WHERE project_id = '".$pos."' AND question_id = '".$comNum."'"); ?>
+                                 $allComments = $db->query("SELECT * FROM answer WHERE project_id = '".$pos."' AND question_id = '".$comNum."' and type = '1' "); ?>
                                  <p>
                                  <ul> <?php
                                  foreach ($allComments as $allCom)

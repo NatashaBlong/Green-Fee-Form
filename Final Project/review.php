@@ -89,6 +89,7 @@
               $ques = $db->query("SELECT * FROM question");
               $i = 0;
               $j = 100;
+			  $count = 1;
               foreach($ques as $que) {
                 ?>
                 <div class="panel panel-default">
@@ -102,8 +103,23 @@
                       <div class="col-6" class="<?= $k ?>">
                         <div class="row">
                           <div class="col-xs-6">
-                            <br><p> Here is where we would pull in the information inluded about this
-                                section from the proposer.</p><br>
+                            <br><p> 
+							<?php
+							
+							$count = str_pad ($count, 3, '0', STR_PAD_LEFT);
+							 $answ = $db->query("SELECT * FROM answer where type = '2' and question_id = '".$count."' ");
+							
+							
+        
+							
+							
+							foreach($answ as $answer)
+							{
+							?> <?= $answer["answer"] ?> <?php
+							}
+							$count = $count + 1;
+							?>	
+							</p><br>
                             <textarea class="commentBox" name="<?=$j?>" rows="5" cols="50" placeholder="Enter comments here..."></textarea>
                           </div>
                           <div class="col-xs-6">
