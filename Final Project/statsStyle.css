@@ -1,27 +1,22 @@
-*, :after, :before
-{
+*, :after, :before {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
-section
-{
+section {
   width: 100%;
   display: table;
 }
-.scroll-down
-{
+.scroll-down {
   opacity: 1;
   -webkit-transition: all .5s ease-in 3s;
   transition: all .5s ease-in 3s;
 }
-li
-{
+li {
   padding-left: 5px;
   list-style-type: none;
 }
-.scroll-down
-{
+.scroll-down {
   position: absolute;
   left: 50%;
   margin-left: -16px;
@@ -37,8 +32,7 @@ li
   -webkit-transition: all .2s ease-in;
   transition: all .2s ease-in;
 }
-.scroll-down:before
-{
+.scroll-down:before {
     position: absolute;
     top: calc(50% - 8px);
     left: calc(50% - 6px);
@@ -51,67 +45,50 @@ li
     border-width: 0px 0 2px 2px;
 }
 .btn, .btn-info, .btn-lg, .progress-bar-success,
-.btn-info:hover, .btn-lg:hover
-{
+.btn-info:hover, .btn-lg:hover {
   background-color: #7CA344;
   border-color: #7CA344;
 }
-.btn:hover, .btn:active, .btn:enabled
-{
+.btn:hover, .btn:active, .btn:enabled {
   background-color: #94bb5d;
   border-color: #94bb5d;
 }
-a
-{
+a {
     color: black;
 }
-a:hover, a:active, a:after
-{
+a:hover, a:active, a:after {
   color: #7CA344;
 }
-@keyframes bounce
-{
+@keyframes bounce {
   0%,
   100%,
   20%,
   50%,
-  80%
-  {
+  80% {
     -webkit-transform: translateY(0);
     -ms-transform: translateY(0);
     transform: translateY(0);
   }
-  40%
-  {
+  40% {
     -webkit-transform: translateY(-10px);
     -ms-transform: translateY(-10px);
     transform: translateY(-10px);
   }
-  60%
-  {
+  60% {
     -webkit-transform: translateY(-5px);
     -ms-transform: translateY(-5px);
     transform: translateY(-5px);
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.navbar.custom-navbar .fa {
+.fixSize {
+  height: 500px;
+  width: 100%;
+}
+.navbar.custom-navbar .fas {
   font-size: 25px
 }
-@media (max-width: 2500px) {
+@media (max-width: 2500px)
+{
   .custom-navbar .navbar-header {
     float: none;
   }
@@ -158,6 +135,17 @@ a:hover, a:active, a:after
     box-shadow: none;
   }
 }
- 
+.modal-body
+{
+  height: 600px;
+}
 
-
+.bottomm
+{
+  background-color: #222;
+  padding: 10px;
+}
+.commentShit
+{
+  position:relative;
+}
