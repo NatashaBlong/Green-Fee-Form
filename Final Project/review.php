@@ -19,6 +19,7 @@
     <img class="logo" src="GreenFee.png" width="200px">
 	                  <?php
                   $db = new PDO("mysql:dbname=finalreview", "root", "");
+	
 				  ?>
 				   <!--  side bar   -->
   <section class="ok">
@@ -48,8 +49,7 @@
                   $lines = $db->query("SELECT title FROM project");
                   $i = 1;
 				          ?>
-
-					                         <?php
+                     <?php
                   foreach ($lines as $line) {
                     ?>
                     <option value="<?= $line["title"] ?>"> <?= $line["title"] ?> </option>
@@ -73,6 +73,7 @@
  if(isset($_POST["output"])){ 	$x = $_POST["output"];
 ?>
     <p>Fill out the following questions based on the proposal  "<?= $x ?>"  </p>
+	
 <?php
  }
 ?>
@@ -84,6 +85,8 @@
           if (isset($_POST["output"]) && isset($_POST["name"]) && isset($_POST["psw"])) { ?>
             <div class="panel-group" id="accordion">
               <?php
+
+			 $idyes = $_POST["output"];
               $pos = 1; //counter
               $posAvg = 0;
               $ques = $db->query("SELECT * FROM question");
@@ -92,6 +95,10 @@
 			  $count = 1;
               foreach($ques as $que) {
                 ?>
+				<span style="display: none;">
+				<input type="text" value="<?=$idyes?>" name="201">
+				</span>
+				
                 <div class="panel panel-default">
                   <div class="panel-heading">
                     <h4 class="panel-title">
@@ -108,10 +115,7 @@
 							
 							$count = str_pad ($count, 3, '0', STR_PAD_LEFT);
 							 $answ = $db->query("SELECT * FROM answer where type = '2' and question_id = '".$count."' ");
-							
-							
-        
-							
+						
 							
 							foreach($answ as $answer)
 							{
