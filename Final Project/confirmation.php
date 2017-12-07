@@ -15,8 +15,9 @@
   <!--  Top header   -->
   <div class="jumbotron">
     <div class="container text-center">
+      <img class="logo" src="GreenFee.png" width="200px">
       <h1>Student Green Fee Review</h1>
-      <p>put something here</p>
+      <p>Review Submitted</p>
     </div>
   </div>
   <!--  side bar   -->
@@ -36,8 +37,6 @@
 					$db = new PDO("mysql:dbname=finalreview", "root", "");
 					$ques = $db->query("SELECT title FROM question");
 
-
-
 				    foreach($ques as $que) {
 					    $num = str_pad($var, 3, "0", STR_PAD_LEFT);
 						$x = $_POST[$c];
@@ -55,8 +54,8 @@
 					$var=$var+1;
 					}
 				?>
-				<p class="text-center">Your response for the proposals have been saved,
-				thank you for taking the time to review for Green Fee.</p>
+				<p class="text-center">Your responses for the proposal have been saved,
+				thank you for your contribution to the Green Fee project.</p>
 				<div class="gif">
 				<img src="logoanimation.gif" alt="checkmark" width="700px" id="check" class="container text-center">
 				</div>
