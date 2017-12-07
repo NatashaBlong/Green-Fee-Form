@@ -195,7 +195,7 @@
                            foreach ($QuestionThree as $qThree)
                            {
                                if ($colorPicker % 2 == 0) { ?>
-                             <div class="fixSize" style="background-color:#7CA341;" id="<?=$qThree["title"]?>" class="container-fluid"> <?php
+                             <div class="fixSize" style="background-color:#7CA344;" id="<?=$qThree["title"]?>" class="container-fluid"> <?php
                              }
                              else
                              { ?>
