@@ -16,14 +16,6 @@ li {
   padding-left: 5px;
   list-style-type: none;
 }
-<<<<<<< HEAD
-.Modal
-{
-=======
-.scroll-down {
->>>>>>> dbfcd8f8d0f2746e8c3a89d366d3780b708c10ff
-  position: absolute;
-}
 .scroll-down {
   position: absolute;
   left: 50%;
@@ -89,16 +81,11 @@ a:hover, a:active, a:after {
   }
 }
 .fixSize {
-<<<<<<< HEAD
   padding-top: 70px;
   height: 500px;
   width: 100%;
   padding-left: 20px;
   padding-right: 20px;
-=======
-  height: 500px;
-  width: 100%;
->>>>>>> dbfcd8f8d0f2746e8c3a89d366d3780b708c10ff
 }
 .navbar.custom-navbar .fas {
   font-size: 25px
@@ -154,7 +141,6 @@ a:hover, a:active, a:after {
 .modal-body
 {
   height: 600px;
-<<<<<<< HEAD
   width: 100%;
 }
 .modal-guts
@@ -166,19 +152,8 @@ a:hover, a:active, a:after {
   height: 600px;
   overflow: auto;
 }
-=======
-}
-
->>>>>>> dbfcd8f8d0f2746e8c3a89d366d3780b708c10ff
 .bottomm
 {
   background-color: #222;
   padding: 10px;
 }
-<<<<<<< HEAD
-=======
-.commentShit
-{
-  position:relative;
-}
->>>>>>> dbfcd8f8d0f2746e8c3a89d366d3780b708c10ff
