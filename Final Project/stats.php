@@ -248,6 +248,7 @@
 </section>
 <footer class="container-fluid">
   <p class="text-center">Copyright © Green Fee</p>
+  <script  src="jScript.js"></script>
 </footer>
 </body>
 </html>
