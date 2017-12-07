@@ -151,69 +151,81 @@
             <div class="modal fade" id="myModal<?=$pos?>" role="dialog">
               <div class="modal-dialog modal-lg">
                 <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Comments</h4>
-                  </div>
-                  <div class="modal-body">
-                    <body data-spy="scroll" data-target="#myScrollspy" data-offset="20">
+                  <div class="modal-body" data-spy="scroll" data-target=".navbar" data-offset="50">
+                  <!-- SCROLL SPY WAS HERE.... <button type="button" class="close" data-dismiss="modal">&times;</button>-->
                       <!-- Scrollspy -->
-                      <div class="container">
-                        <div class="row">
-                          <nav class="col-sm-3" id="myScrollspy">
-                            <ul class="nav nav-pills nav-stacked">
-                              <?php
-                              $QuestionTwo = $db->query("SELECT * FROM question ;"); // getting everything from questions
-                               $le = 0;
-                               foreach ($QuestionTwo as $qTwo)
-                               {
-                                if ($le == 0)
-                                { ?>
-                                  <li><a href="#<?=$qTwo["title"]?>"><?=$qTwo["title"]?></a></li>
+                          <nav class="navbar navbar-inverse navbar-static-top custom-navbar" role="navigation">
+                            <div class="container-fluid">
+                              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-<?=$pos?>"> <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                              </button>
+                              <div class="navbar-header"> <a class="navbar-brand" rel="home" href="#" title="Comments">Comments</a>
+                              </div>
+                              <div class="navbar-collapse collapse" id="navbar-collapse-<?=$pos?>">
+                                <!-- Non-collapsing right-side icons -->
+                                <ul class="nav navbar-nav">
                                   <?php
-                                }
-                                else
-                                { ?>
-                                  <li><a href="#<?=$qTwo["title"]?>"><?=$qTwo["title"]?></a></li>
-                                  <?php
-                                }
-                                  $le = $le + 1;
-                               }
-                               ?>
-                            </ul>
+                                  $QuestionTwo = $db->query("SELECT * FROM question;"); // getting everything from questions
+                                   $le = 0;
+                                   foreach ($QuestionTwo as $qTwo)
+                                   {
+                                        if ($le == 0) { ?>
+                                          <li ><a class="active" href="#<?=$qTwo["title"]?>"><?=$qTwo["title"]?></a></li> <?php
+                                        }
+                                        else { ?>
+                                          <li><a href="#<?=$qTwo["title"]?>"><?=$qTwo["title"]?></a></li> <?php
+                                        }
+                                      $le = $le + 1;
+                                   }
+                                   ?>
+                                  </ul>
+                              </div>
+                              <!--/.nav-collapse -->
+                            </div>
+                            <!--/.container -->
                           </nav>
-                          <div class="col-sm-6">
-                            <?php
-                            $comNum = 1;
-                            $comNum = str_pad ($comNum, 3, '0', STR_PAD_LEFT);
-                            $QuestionThree = $db->query("SELECT * FROM question ;"); // getting everything from questions
-                             foreach ($QuestionThree as $qThree)
+                          <div class ="modal-guts" data-spy="scroll" data-target=".navbar" data-offset="50">
+                          <?php
+                          $comNum = 1;
+                          $colorPicker = 0;
+                          $comNum = str_pad ($comNum, 3, '0', STR_PAD_LEFT);
+                          $QuestionThree = $db->query("SELECT * FROM question;"); // getting everything from questions
+                           foreach ($QuestionThree as $qThree)
+                           {
+                               if ($colorPicker % 2 == 0) { ?>
+                             <div class="fixSize" style="background-color:#7CA341;" id="<?=$qThree["title"]?>" class="container-fluid"> <?php
+                             }
+                             else
                              { ?>
-                               <fieldset>
-                               <div id="<?=$qoo["title"]?>">
-                                 <h4><?=$qThree["title"]?></h4> <?php
-                                 $allComments = $db->query("SELECT * FROM answer WHERE project_id = '".$pos."' AND question_id = '".$comNum."' and type = '1' "); ?>
-                                 <p>
-                                 <ul> <?php
-                                 foreach ($allComments as $allCom)
-                                 { ?>
-                                   <li><?=$allCom["comment"]?></li> <?php
-                                 } ?>
-                                 </ul>
-                               </p>
-                               </div>
-                             </fieldset>
+                               <div class="fixSize" style="background-color:white;" id="<?=$qThree["title"]?>" class="container-fluid"><?php
+                             } ?>
+                               <h4><?=$qThree["title"]?></h4> <?php
+                               $allComments = $db->query("SELECT * FROM answer WHERE project_id = '".$pos."' AND question_id = '".$comNum."'"); ?>
+                               <p>
+                               <ul> <?php
+                               foreach ($allComments as $allCom)
+                               { ?>
+                                 <li><?=$allCom["comment"]?></li> <?php
+                               } ?>
+                               </ul>
                                <?php
                                $comNum = $comNum + 1;
                                $comNum = str_pad ($comNum, 3, '0', STR_PAD_LEFT);
-                             }
                                ?>
-                            </div>
+                             </p>
+                           </div>
+                           <?php
+                           $colorPicker = $colorPicker + 1;
+                           }
+                             ?>
                           </div>
                         </div>
-                      </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <div class="bottomm">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -239,6 +251,3 @@
 </footer>
 </body>
 </html>
-
-
-
