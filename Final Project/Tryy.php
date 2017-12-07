@@ -196,11 +196,11 @@
                            { ?>
                              <fieldset> <?php
                                if ($colorPicker % 2 == 0) { ?>
-                             <div class="fixSize" style="background-color:#7CA341;" id="<?=$qoo["title"]?>" class="container-fluid"> <?php
+                             <div class="fixSize" style="background-color:#7CA341;" id="<?=$qThree["title"]?>" class="container-fluid"> <?php
                              }
                              else
                              { ?>
-                               <div class="fixSize" style="background-color:white;" id="<?=$qoo["title"]?>" class="container-fluid"><?php
+                               <div class="fixSize" style="background-color:white;" id="<?=$qThree["title"]?>" class="container-fluid"><?php
                              } ?>
                                <h4><?=$qThree["title"]?></h4> <?php
                                $allComments = $db->query("SELECT * FROM answer WHERE project_id = '".$pos."' AND question_id = '".$comNum."'"); ?>
