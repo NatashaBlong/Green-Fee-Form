@@ -186,7 +186,11 @@
                             </div>
                             <!--/.container -->
                           </nav>
+<<<<<<< HEAD
                           <div class ="modal-guts" data-spy="scroll" data-target=".navbar" data-offset="50">
+=======
+                          <div class ="commentShit">
+>>>>>>> dbfcd8f8d0f2746e8c3a89d366d3780b708c10ff
                           <?php
                           $comNum = 1;
                           $colorPicker = 0;

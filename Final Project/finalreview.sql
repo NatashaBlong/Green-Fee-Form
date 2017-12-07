@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 06, 2017 at 12:10 AM
+-- Generation Time: Dec 06, 2017 at 01:22 AM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.10
 
@@ -104,7 +104,19 @@ INSERT INTO `answer` (`user_id`, `question_id`, `project_id`, `answer`, `comment
 ('00000', '009', '1', 'Response 9', NULL, 2),
 ('00000', '010', '1', 'Response 10', NULL, 2),
 ('00000', '011', '1', 'Response 11', NULL, 2),
-('00000', '012', '1', 'Response 12', NULL, 2);
+('00000', '012', '1', 'Response 12', NULL, 2),
+('00000', '001', '1', '1', '', 1),
+('00000', '002', '1', '5', '', 1),
+('00000', '003', '1', '3', '', 1),
+('00000', '004', '1', '3', '', 1),
+('00000', '005', '1', '3', '', 1),
+('00000', '006', '1', '3', '', 1),
+('00000', '007', '1', '3', '', 1),
+('00000', '008', '1', '3', '', 1),
+('00000', '009', '1', '3', '', 1),
+('00000', '010', '1', '3', '', 1),
+('00000', '011', '1', '3', '', 1),
+('00000', '012', '1', '3', '', 1);
 
 -- --------------------------------------------------------
 
@@ -129,7 +141,7 @@ CREATE TABLE `project` (
 --
 
 INSERT INTO `project` (`id`, `user_id`, `advisor_name`, `group_name`, `title`, `amount`, `contact_name`, `group`, `completed`) VALUES
-('1', '00000', 'charles', 'Save The Envirement', '	\r\nSave The Environment\r\n', 120000, 'Shane', 'yes', 2),
+('1', '00000', 'charles', 'Save The Environment', 'Save The Environment', 120000, 'Shane', 'yes', 2),
 ('2', '00000', 'charles', 'Save Energy', 'Solar Power', 35000, 'Bill', 'yes', 1);
 
 -- --------------------------------------------------------
