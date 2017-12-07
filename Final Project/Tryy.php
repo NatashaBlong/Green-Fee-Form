@@ -193,8 +193,7 @@
                           $comNum = str_pad ($comNum, 3, '0', STR_PAD_LEFT);
                           $QuestionThree = $db->query("SELECT * FROM question;"); // getting everything from questions
                            foreach ($QuestionThree as $qThree)
-                           { ?>
-                             <fieldset> <?php
+                           {
                                if ($colorPicker % 2 == 0) { ?>
                              <div class="fixSize" style="background-color:#7CA341;" id="<?=$qThree["title"]?>" class="container-fluid"> <?php
                              }
@@ -217,7 +216,6 @@
                                ?>
                              </p>
                            </div>
-                           </fieldset>
                            <?php
                            $colorPicker = $colorPicker + 1;
                            }
