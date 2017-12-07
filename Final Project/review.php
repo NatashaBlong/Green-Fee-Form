@@ -9,18 +9,15 @@
   <link rel="stylesheet" href="reviewStyle.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="jScript.js"></script>
+  <script src="reviewJS.js"></script>
   <link rel="icon" type="image/ico" href="GreenFeeIcon.ico">
 </head>
 <body>
   <!--  Top header   -->
   <div class="jumbotron">
     <div class="container text-center">
-    <img class="logo" src="GreenFee.png" width="200px">
-	                  <?php
-                  $db = new PDO("mysql:dbname=finalreview", "root", "");
-	
-				  ?>
+    <img class="logo" src="GreenFee.png" width="200px"><?php
+     $db = new PDO("mysql:dbname=finalreview", "root", "");?>
 				   <!--  side bar   -->
   <section class="ok">
   <div class="container-fluid">
@@ -55,9 +52,7 @@
                     <option value="<?= $line["title"] ?>"> <?= $line["title"] ?> </option>
 					               <?php
                     $i = $i + 1;
-                  }
-                  ?>
-
+                  }?>
                 </select><br>
                 <button type="submit">Proceed to Proposal Review</button><br>
               </div>
@@ -67,25 +62,18 @@
           </div>
           <!--  end create arrays   -->
 
-
       <h1>Review Form</h1>
-<?php
- if(isset($_POST["output"])){ 	$x = $_POST["output"];
-?>
-    <p>Fill out the following questions based on the proposal  "<?= $x ?>"  </p>
-	
-<?php
- }
-?>
+      <?php
+      if(isset($_POST["output"])){ 	$x = $_POST["output"];?>
+        <p>Fill out the following questions based on the proposal  "<?= $x ?>"  </p> <?php
+      } ?>
     </div>
   </div>
           <!--  start accordian box   -->
           <form action="confirmation.php" method="POST">
           <?php
           if (isset($_POST["output"]) && isset($_POST["name"]) && isset($_POST["psw"])) { ?>
-            <div class="panel-group" id="accordion">
-              <?php
-
+            <div class="panel-group" id="accordion"> <?php
 			 $idyes = $_POST["output"];
               $pos = 1; //counter
               $posAvg = 0;
@@ -93,12 +81,10 @@
               $i = 0;
               $j = 100;
 			  $count = 1;
-              foreach($ques as $que) {
-                ?>
+              foreach($ques as $que) { ?>
 				<span style="display: none;">
 				<input type="text" value="<?=$idyes?>" name="201">
 				</span>
-				
                 <div class="panel panel-default">
                   <div class="panel-heading">
                     <h4 class="panel-title">
@@ -110,21 +96,17 @@
                       <div class="col-6" class="<?= $k ?>">
                         <div class="row">
                           <div class="col-xs-6">
-                            <br><p> 
-							<?php
-							
+                            <br><p> <?php
 							$count = str_pad ($count, 3, '0', STR_PAD_LEFT);
 							 $answ = $db->query("SELECT * FROM answer where type = '2' and question_id = '".$count."' ");
-						
-							
 							foreach($answ as $answer)
 							{
 							?> <?= $answer["answer"] ?> <?php
 							}
 							$count = $count + 1;
-							?>	
+							?>
 							</p><br>
-                            <textarea class="commentBox" name="<?=$j?>" rows="5" cols="50" placeholder="Enter comments here..."></textarea>
+                  <textarea class="commentBox" name="<?=$j?>" rows="5" cols="50" placeholder="Enter comments here..."></textarea>
                           </div>
                           <div class="col-xs-6">
                             <br><p><?= $que["text"]?></p><br>
@@ -160,7 +142,3 @@
     </footer>
   </body>
   </html>
-
-
-
-  

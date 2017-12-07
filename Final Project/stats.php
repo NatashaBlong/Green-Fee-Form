@@ -9,7 +9,6 @@
   <link rel="stylesheet" href="statsStyle.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="scroll.js"></script>
   <link rel="icon" type="image/ico" href="GreenFeeIcon.ico">
 </head>
 <body>
@@ -135,7 +134,7 @@
                     </script>
                 <canvas id="radar-chart<?= $pos?>" width="800" height="400"></canvas>
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-                <script  src="jScript.js"></script>
+                <script  src="statJS.js"></script>
                 <br>
               <hr>
               <!-- info box above table -->
@@ -240,7 +239,7 @@
 </section>
 <footer class="container-fluid">
   <p class="text-center">Copyright © Green Fee</p>
-  <script  src="jScript.js"></script>
+  <script  src="statJS.js"></script>
 </footer>
 </body>
 </html>

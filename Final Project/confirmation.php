@@ -32,12 +32,12 @@
 					$c=0;
 					$d=100;
 					$e=201;
-					
+
 					$db = new PDO("mysql:dbname=finalreview", "root", "");
 					$ques = $db->query("SELECT title FROM question");
-					
-					
-					
+
+
+
 				    foreach($ques as $que) {
 					    $num = str_pad($var, 3, "0", STR_PAD_LEFT);
 						$x = $_POST[$c];
@@ -47,7 +47,7 @@
 						$id = $db->query("SELECT id FROM project where title = '".$r."' ");
 						foreach($id as $right){
 							$get = $right["id"];
-							
+
 						}
 				    $lines = $db->query("INSERT INTO `answer` (`user_id`,`question_id`,`project_id`,`answer`,`comment`, `type`) VALUES ('00000','".$num."', '".$get."','".$x."','".$y."','1');");
 					$c=$c+1;
@@ -68,8 +68,3 @@
     </footer>
   </body>
   </html>
-
-
-
-
-  
