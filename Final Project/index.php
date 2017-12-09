@@ -32,7 +32,7 @@
         <body onload="document.getElementById('id01').style.display='block'">
         <?php } ?>
           <div id="id01" class="modal">
-            <form class="modal-content animate" action="index.php" method="POST">
+            <form class="modal-content animate" action="review.php" method="POST">
               <div class="container">
                 <label><b><h3>Please Log in and select a proposal to review:</h3></b></label>
                 <label><b>Name</b></label>
