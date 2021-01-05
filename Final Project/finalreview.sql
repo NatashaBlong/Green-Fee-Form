@@ -12,12 +12,6 @@ SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
 --
 -- Database: `finalreview`
 --
@@ -168,7 +162,7 @@ INSERT INTO `question` (`id`, `title`, `text`, `type`) VALUES
 ('004', 'Appropriateness of Schedule and Budget Request', 'Project schedule and budget are reasonable and conform to established timelines, constraints and parameters.', 'review'),
 ('005', 'Accountability', 'Project includes mechanism for evaluation and follow-up. At a minimum, a project plan includes appropriate progress reports to the Sustainability Committee based on the duration of the project and a final report within 60 days following completion of the project.', 'review'),
 ('006', 'Innovation', 'Project is innovative in nature and does not include routine maintenance or code-compliant activities. Funding may support narrowing the gap between code-compliant and more sustainable alternatives.', 'review'),
-('007', 'Environmental Benefits', 'Project demonstrates a reduction in WSU\'s carbon footprint or provides other environmental benefits such as water conservation, storm water management, biodiversity conservation, and waste minimization.', 'review'),
+('007', 'Environmental Benefits', 'Project demonstrates a reduction in the WSU carbon footprint or provides other environmental benefits such as water conservation, storm water management, biodiversity conservation, and waste minimization.', 'review'),
 ('008', 'Regional Connection', 'Project provides intellectual and emotional linkage with the unique landscape of the Driftless Area/ Mississippi River, as well as the cultural lifeways of this special place.', 'review'),
 ('009', 'Outreach and Education', 'Project considers interdisciplinary and experiential education and outreach opportunities and has included them as part of its implementation plan.', 'review'),
 ('010', 'Self Sufficiency', 'Project includes matching funds from sources beyond SGF or includes a plan for sustained funding.', 'review'),
@@ -304,7 +298,3 @@ ALTER TABLE `review`
   ADD CONSTRAINT `fk_review_project1` FOREIGN KEY (`project_id`) REFERENCES `project` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_review_user1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
